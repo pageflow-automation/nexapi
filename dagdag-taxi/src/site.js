@@ -44,6 +44,17 @@
   addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.classList.contains("is-open")) { setMenu(false); menuBtn.focus(); } });
   $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
 
+  // ---------- Mobile call bar: hide it while the page's own call/WhatsApp buttons are visible ----------
+  const bar = $("[data-callbar]");
+  if (bar) {
+    const shown = new Set();
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? shown.add(e.target) : shown.delete(e.target)));
+      document.body.classList.toggle("ctas-in-view", shown.size > 0);
+    }, { threshold: 0.2 });
+    $$("main .ctas").forEach((g) => cio.observe(g));
+  }
+
   // ---------- Live clock (Culemborg time) ----------
   const clock = $("[data-clock]");
   if (clock) {

@@ -164,7 +164,7 @@ function airports() {
     <p>Klein en overzichtelijk. Ongeveer ${minutes(HOME, DEST["rotterdam-ap"])} minuten rijden vanaf Culemborg.</p>
   </div>
 </div>`),
-      faq(faqs, { title: "Vragen over luchthavenvervoer" }),
+      faq(faqs, { title: "Vragen over luchthaven\u00advervoer" }), // soft hyphen: breaks as luchthaven-vervoer on phones
       ctaBand({ title: "Vlucht geboekt? Taxi ook.", waText }),
     ].join("\n"),
   };
