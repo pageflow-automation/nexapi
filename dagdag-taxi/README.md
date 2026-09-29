@@ -26,9 +26,8 @@ Een plaats toevoegen = één object in `TOWNS`. Pagina, sitemap, kaart, footer-l
 
 1. Importeer de repository in Vercel.
 2. **Root Directory:** `dagdag-taxi`. Framework preset: *Other*. De rest staat in `vercel.json`.
-3. Koppel het eigen domein (bijv. `dagdagtaxi.nl`) en zet de environment variable
-   `SITE_URL=https://www.dagdagtaxi.nl` zodat canonical-URL's, sitemap en share-links naar het echte domein wijzen.
-   Zonder `SITE_URL` gebruikt de build automatisch het Vercel-productiedomein.
+3. Koppel `dagdagtaxi.nl` (hoofddomein) en `www.dagdagtaxi.nl` (redirect naar het hoofddomein) in Vercel → Domains.
+   Canonical-URL's, sitemap en share-links wijzen standaard naar `https://dagdagtaxi.nl` (aan te passen met `SITE_URL`).
 
 ## QR-code (quishing-veilig)
 

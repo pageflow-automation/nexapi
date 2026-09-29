@@ -1,11 +1,9 @@
 // All business facts and page content live here. Change once, rebuild, done.
 
-const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 export const SITE = {
   name: "DagDag Taxi",
-  // Canonical base URL. Set SITE_URL in Vercel once a custom domain is live
-  // (e.g. https://www.dagdagtaxi.nl); until then the Vercel production URL is used.
-  url: (process.env.SITE_URL || (productionHost ? `https://${productionHost}` : "https://dagdag-taxi.vercel.app")).replace(/\/$/, ""),
+  // Canonical base URL. SITE_URL (env) overrides it, e.g. for a staging copy.
+  url: (process.env.SITE_URL || "https://dagdagtaxi.nl").replace(/\/$/, ""),
   phoneDisplay: "06 28 69 55 50",
   phoneE164: "+31628695550",
   whatsapp: "31628695550",

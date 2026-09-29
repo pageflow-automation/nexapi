@@ -14,7 +14,8 @@ const { minutes, HOME } = await import(path.join(ROOT, "src/lib.mjs"));
 const INK = "#141414", YEL = "#FDBC18", PAPER = "#F3EFE6";
 const LOGO_VB = "6 7 1179 421", MARK_VB = "922 6 264 328";
 const markPaths = (fill) => `<path fill="${fill}" d="${D["arc-out"]}"/><path fill="${fill}" d="${D["arc-in"]}"/><path fill="${fill}" d="${D.hand}"/>`;
-const logoSvg = (word = INK, accent = YEL, cls = "") => `<svg class="${cls}" viewBox="${LOGO_VB}" xmlns="http://www.w3.org/2000/svg"><path fill="${word}" d="${D.word}"/><path fill="${word}" d="${D.taxi}"/>${markPaths(accent)}</svg>`;
+let maskId = 0; // hand sits behind the "g", cut by a mask so the gap is transparent
+const logoSvg = (word = INK, accent = YEL, cls = "") => { const id = `cut${++maskId}`; return `<svg class="${cls}" viewBox="${LOGO_VB}" xmlns="http://www.w3.org/2000/svg"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="440"><rect width="1200" height="440" fill="#fff"/><path d="${D.word}" fill="#000" stroke="#000" stroke-width="11" stroke-linejoin="round"/></mask></defs><path fill="${accent}" d="${D["arc-out"]}"/><path fill="${accent}" d="${D["arc-in"]}"/><path fill="${accent}" d="${D.hand}" mask="url(#${id})"/><path fill="${word}" d="${D.word}"/><path fill="${word}" d="${D.taxi}"/></svg>`; };
 const markSvg = (fill = YEL, attrs = "") => `<svg ${attrs} viewBox="${MARK_VB}" xmlns="http://www.w3.org/2000/svg">${markPaths(fill)}</svg>`;
 const qrSvg = fs.readFileSync(path.join(PUB, "img/qr-contact.svg"), "utf8").replace(/<\?xml[^>]*>/, "");
 

@@ -52,9 +52,9 @@ export const LOGO_VB = "6 7 1179 421";
 export const MARK_VB = "922 6 264 328";
 export function logo({ cls = "", label = "DagDag Taxi" } = {}) {
   return `<svg class="logo ${cls}" viewBox="${LOGO_VB}" role="img" aria-label="${esc(label)}" data-logo>
-<use class="logo-word" href="${SPRITE}#p-word"/><use class="logo-taxi" href="${SPRITE}#p-taxi"/>
 <use class="logo-arc logo-arc-out" href="${SPRITE}#p-arc-out"/><use class="logo-arc logo-arc-in" href="${SPRITE}#p-arc-in"/>
-<use class="logo-hand" href="${SPRITE}#p-hand"/></svg>`;
+<use class="logo-hand" href="${SPRITE}#p-hand"/>
+<use class="logo-word" href="${SPRITE}#p-word"/><use class="logo-taxi" href="${SPRITE}#p-taxi"/></svg>`;
 }
 export function mark(cls = "") {
   return `<svg class="mark ${cls}" viewBox="${MARK_VB}" aria-hidden="true" data-logo>

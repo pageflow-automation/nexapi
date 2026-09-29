@@ -83,8 +83,13 @@ em { font-style: italic; }
 .sec-head { display: grid; gap: 18px; justify-items: start; margin-bottom: clamp(32px, 5vw, 56px); }
 
 /* ---------- Logo ---------- */
-.logo { width: 100%; height: auto; overflow: visible; }
+.logo { --logo-bg: var(--paper); width: 100%; height: auto; overflow: visible; }
 .logo-word, .logo-taxi { fill: var(--ink); }
+/* The hand sits behind the "g"; a background-coloured outline keeps the gap from the original logo, also while waving */
+.logo-word { stroke: var(--logo-bg); stroke-width: 11px; stroke-linejoin: round; paint-order: stroke fill; }
+.ftr .logo, .bg-tile-dark .logo { --logo-bg: var(--night); }
+.bg-tile .logo { --logo-bg: var(--paper-2); }
+.bg-tile-yellow .logo { --logo-bg: var(--yellow); }
 .logo-light .logo-word, .logo-light .logo-taxi { fill: var(--night-ink); }
 .logo-mono .logo-word, .logo-mono .logo-taxi, .logo-mono .logo-hand, .logo-mono .logo-arc { fill: var(--ink); }
 .logo-hand, .logo-arc { fill: var(--yellow); }
