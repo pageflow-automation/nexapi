@@ -22,6 +22,11 @@ npm run assets   # (alleen nodig na logo/kleur-wijzigingen) favicons, share-afbe
 
 Een plaats toevoegen = één object in `TOWNS`. Pagina, sitemap, kaart, footer-link, share-afbeelding (na `npm run assets`) en structured data volgen vanzelf.
 
+## Beeldmerk
+
+De zwaaiende hand is het icoon `waving_hand` (Rounded, Fill, weight 700) uit
+[Material Symbols](https://github.com/google/material-design-icons) van Google, Apache License 2.0.
+
 ## Deploy op Vercel
 
 1. Importeer de repository in Vercel.

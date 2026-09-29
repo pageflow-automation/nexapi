@@ -48,8 +48,8 @@ export const waIcon = (cls = "i") =>
 
 // ---------- Logo (layered, so the hand can wave) ----------
 const SPRITE = "/img/brand.svg";
-export const LOGO_VB = "6 7 1179 421";
-export const MARK_VB = "922 6 264 328";
+export const LOGO_VB = "6 7 1316 421";
+export const MARK_VB = "957 7 365 365"; // hand icon: Material Symbols "waving_hand" (Apache 2.0)
 export function logo({ cls = "", label = "DagDag Taxi" } = {}) {
   return `<svg class="logo ${cls}" viewBox="${LOGO_VB}" role="img" aria-label="${esc(label)}" data-logo>
 <use class="logo-arc logo-arc-out" href="${SPRITE}#p-arc-out"/><use class="logo-arc logo-arc-in" href="${SPRITE}#p-arc-in"/>
@@ -157,7 +157,7 @@ ${airports.map((a) => {
     return `<g class="map-air"><path d="M-10 -8 L2 0 L-10 8" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg.toFixed(1)})"/><text x="${lx.toFixed(1)}" y="${(ly + dy).toFixed(1)}" text-anchor="${anchor}">${esc(a.label)}<tspan class="map-air-min" x="${lx.toFixed(1)}" dy="18">${a.min} min</tspan></text></g>`;
   }).join("\n")}
 ${[utrecht, ...towns].map(pt).join("\n")}
-<g class="map-home"><circle cx="${c}" cy="${c}" r="26"/><svg x="${c - 15}" y="${c - 19}" width="30" height="38" viewBox="${MARK_VB}"><use href="${SPRITE}#p-hand"/></svg>
+<g class="map-home"><circle cx="${c}" cy="${c}" r="26"/><svg x="${c - 17}" y="${c - 17}" width="34" height="34" viewBox="${MARK_VB}"><use href="${SPRITE}#p-hand"/></svg>
 <text x="${c}" y="${c + 50}" text-anchor="middle">Culemborg</text></g>
 </svg>
 </figure>`;

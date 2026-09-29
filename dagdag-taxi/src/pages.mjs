@@ -340,6 +340,7 @@ function brand() {
     <div class="bg-tile bg-tile-yellow">${mark("mark-ink")}</div>
     <div class="bg-tile"><img src="/favicon.svg" width="96" height="96" alt="App-icoon"></div>
   </div>
+  <p class="bg-small">De zwaai is het icoon “waving_hand” uit Material Symbols van Google (Apache 2.0-licentie, vrij te gebruiken, ook commercieel).</p>
 </section>
 
 <section class="bg wrap">

@@ -85,8 +85,6 @@ em { font-style: italic; }
 /* ---------- Logo ---------- */
 .logo { --logo-bg: var(--paper); width: 100%; height: auto; overflow: visible; }
 .logo-word, .logo-taxi { fill: var(--ink); }
-/* The hand sits behind the "g"; a background-coloured outline keeps the gap from the original logo, also while waving */
-.logo-word { stroke: var(--logo-bg); stroke-width: 11px; stroke-linejoin: round; paint-order: stroke fill; }
 .ftr .logo, .bg-tile-dark .logo { --logo-bg: var(--night); }
 .bg-tile .logo { --logo-bg: var(--paper-2); }
 .bg-tile-yellow .logo { --logo-bg: var(--yellow); }
@@ -95,7 +93,7 @@ em { font-style: italic; }
 .logo-hand, .logo-arc { fill: var(--yellow); }
 .mark { width: 100%; height: auto; overflow: visible; }
 .mark-ink .logo-hand, .mark-ink .logo-arc { fill: var(--ink); }
-[data-logo] .logo-hand { transform-box: view-box; transform-origin: 974px 307px; }
+[data-logo] .logo-hand { transform-box: view-box; transform-origin: 1014px 326px; }
 [data-logo].is-waving .logo-hand { animation: wave 1.5s var(--ease) both; }
 [data-logo].is-waving .logo-arc-in { animation: ping 1.5s ease-out .08s both; }
 [data-logo].is-waving .logo-arc-out { animation: ping 1.5s ease-out .22s both; }
@@ -150,7 +148,7 @@ em { font-style: italic; }
   backdrop-filter: blur(12px) saturate(1.3);
 }
 .hdr.is-scrolled { border-bottom-color: var(--line); }
-.hdr-logo { width: 150px; flex: none; }
+.hdr-logo { width: 166px; flex: none; }
 .hdr-nav { margin-left: auto; }
 .hdr-nav ul { display: flex; gap: 6px; }
 .hdr-nav li a {
@@ -585,7 +583,7 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
 @media (max-width: 900px) {
   :root { --hdr: 68px; }
   body { font-size: 18px; padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
-  .hdr-logo { width: 124px; }
+  .hdr-logo { width: 138px; }
   .hdr-call { display: none; }
   .hdr-menu { display: inline-flex; margin-left: auto; }
   .hdr-nav {

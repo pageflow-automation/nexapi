@@ -144,7 +144,7 @@ export function heroHome() {
     <div class="sun" data-sun>
       <svg class="sun-svg" viewBox="0 0 400 400">
         <circle class="sun-disc" cx="200" cy="200" r="190"/>
-        <svg x="92" y="62" width="216" height="268" viewBox="922 6 264 328" class="sun-mark" data-logo>
+        <svg x="104" y="104" width="192" height="192" viewBox="957 7 365 365" class="sun-mark" data-logo>
           <use class="logo-arc logo-arc-out" href="/img/brand.svg#p-arc-out"/>
           <use class="logo-arc logo-arc-in" href="/img/brand.svg#p-arc-in"/>
           <use class="logo-hand" href="/img/brand.svg#p-hand"/>

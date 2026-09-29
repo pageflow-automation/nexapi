@@ -12,10 +12,9 @@ const { TOWNS, SITE } = await import(path.join(ROOT, "src/data.mjs"));
 const { minutes, HOME } = await import(path.join(ROOT, "src/lib.mjs"));
 
 const INK = "#141414", YEL = "#FDBC18", PAPER = "#F3EFE6";
-const LOGO_VB = "6 7 1179 421", MARK_VB = "922 6 264 328";
+const LOGO_VB = "6 7 1316 421", MARK_VB = "957 7 365 365";
 const markPaths = (fill) => `<path fill="${fill}" d="${D["arc-out"]}"/><path fill="${fill}" d="${D["arc-in"]}"/><path fill="${fill}" d="${D.hand}"/>`;
-let maskId = 0; // hand sits behind the "g", cut by a mask so the gap is transparent
-const logoSvg = (word = INK, accent = YEL, cls = "") => { const id = `cut${++maskId}`; return `<svg class="${cls}" viewBox="${LOGO_VB}" xmlns="http://www.w3.org/2000/svg"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="440"><rect width="1200" height="440" fill="#fff"/><path d="${D.word}" fill="#000" stroke="#000" stroke-width="11" stroke-linejoin="round"/></mask></defs><path fill="${accent}" d="${D["arc-out"]}"/><path fill="${accent}" d="${D["arc-in"]}"/><path fill="${accent}" d="${D.hand}" mask="url(#${id})"/><path fill="${word}" d="${D.word}"/><path fill="${word}" d="${D.taxi}"/></svg>`; };
+const logoSvg = (word = INK, accent = YEL, cls = "") => `<svg class="${cls}" viewBox="${LOGO_VB}" xmlns="http://www.w3.org/2000/svg"><path fill="${word}" d="${D.word}"/><path fill="${word}" d="${D.taxi}"/>${markPaths(accent)}</svg>`;
 const markSvg = (fill = YEL, attrs = "") => `<svg ${attrs} viewBox="${MARK_VB}" xmlns="http://www.w3.org/2000/svg">${markPaths(fill)}</svg>`;
 const qrSvg = fs.readFileSync(path.join(PUB, "img/qr-contact.svg"), "utf8").replace(/<\?xml[^>]*>/, "");
 
@@ -30,7 +29,7 @@ body { font-family: Archivo; -webkit-font-smoothing: antialiased; }
 `;
 
 // ---------- Favicons ----------
-const favSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${INK}"/>${markSvg(YEL, 'x="12.5" y="8" width="39" height="48"')}</svg>`;
+const favSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${INK}"/>${markSvg(YEL, 'x="8" y="8" width="48" height="48"')}</svg>`;
 fs.writeFileSync(path.join(PUB, "favicon.svg"), favSvg);
 
 const browser = await chromium.launch({ executablePath: fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined });
@@ -79,7 +78,7 @@ for (const [key, [kicker, l1, l2]] of Object.entries(OG)) {
 <style>
 .og { position: relative; width: 1200px; height: 630px; background: ${PAPER}; color: ${INK}; overflow: hidden; }
 .sun { position: absolute; right: -150px; top: 50%; width: 620px; height: 620px; translate: 0 -50%; border-radius: 50%; background: ${YEL}; display: grid; place-items: center; }
-.sun svg { height: 330px; width: auto; translate: -70px -6px; }
+.sun svg { height: 260px; width: auto; translate: -90px 0; }
 .txt { position: absolute; left: 72px; top: 64px; width: 640px; }
 h1 { margin-top: 30px; font-weight: 900; font-stretch: 125%; line-height: .92; letter-spacing: -.045em; font-size: 104px; }
 h1 em { font-style: italic; }
@@ -92,7 +91,7 @@ h1 em { font-style: italic; }
   <div class="txt"><span class="tag">${kicker}</span><h1 id="t"><span>${l1}</span><br><span>${l2}</span></h1></div>
   <div class="foot"><span class="num">${SITE.phoneDisplay}</span>${logoSvg(INK, YEL, "logo")}</div>
 </div>
-<script>window.fit = () => { const h = document.getElementById("t"); let s = 104; while ((h.scrollWidth > 630 || h.offsetHeight > 300) && s > 50) { s -= 2; h.style.fontSize = s + "px"; } };</script>`;
+<script>window.fit = () => { const h = document.getElementById("t"); const widest = () => Math.max(...[...h.querySelectorAll("span")].map((s) => s.getBoundingClientRect().width)); let s = 104; while ((widest() > 630 || h.offsetHeight > 300) && s > 50) { s -= 2; h.style.fontSize = s + "px"; } };</script>`;
   await shot(html, 1200, 630, path.join(PUB, "og", `${key}.png`));
 }
 
