@@ -129,7 +129,7 @@ await pdf(`
       <p style="font:900 4.2mm/1 Archivo;font-stretch:125%;letter-spacing:-.03em">Sla ons op.</p>
       <p class="mono" style="font-size:5.4mm;line-height:1;letter-spacing:-.02em;white-space:nowrap">${SITE.phoneDisplay}</p>
       <p style="font:600 2.5mm/1.3 Archivo">Bellen of WhatsApp.<br>Culemborg en omgeving.</p>
-      <p style="font:500 2.1mm/1.35 Archivo;color:#675f52;margin-top:.6mm">Scannen = contact opslaan. Je telefoon toont <b>DagDag Taxi Culemborg</b>. Nooit een link of betaalverzoek.</p>
+      <p style="font:500 2.1mm/1.35 Archivo;color:#675f52;margin-top:.6mm">Scannen = contact opslaan. Je telefoon toont <b>DagDag Taxi</b>. Nooit een link of betaalverzoek.</p>
     </div>
   </div>
   <div style="position:absolute;left:0;right:0;bottom:0;height:5mm;background:${YEL}"></div>

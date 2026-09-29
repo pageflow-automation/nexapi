@@ -272,7 +272,7 @@ export function saveNumber() {
         <a class="btn btn-dark" href="/dagdag-taxi.vcf" download>${icon("save")}<span>Nummer opslaan</span></a>
         <a class="btn btn-ghost" href="${esc(wa())}" target="_blank" rel="noopener" data-track="whatsapp">${waIcon("i i-wa")}<span>WhatsApp</span></a>
       </div>
-      <p class="save-safe">${icon("check")}<span>Deze QR-code bevat alleen ons telefoonnummer, geen link. Je telefoon laat <strong>DagDag Taxi Culemborg · ${SITE.phoneDisplay}</strong> zien.</span></p>
+      <p class="save-safe">${icon("check")}<span>Deze QR-code bevat alleen ons telefoonnummer, geen link. Je telefoon laat <strong>DagDag Taxi · ${SITE.phoneDisplay}</strong> zien.</span></p>
     </div>
     <figure class="save-qr">
       <img src="/img/qr-contact.svg" width="260" height="260" alt="QR-code om het nummer van DagDag Taxi, ${SITE.phoneDisplay}, op te slaan als contact" loading="lazy">

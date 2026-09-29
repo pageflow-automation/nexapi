@@ -84,7 +84,7 @@ fs.writeFileSync(path.join(OUT, "site.webmanifest"), JSON.stringify({
 // vCard download (same contact as the QR code)
 fs.writeFileSync(path.join(OUT, "dagdag-taxi.vcf"), [
   "BEGIN:VCARD", "VERSION:3.0",
-  "N:;DagDag Taxi Culemborg;;;", "FN:DagDag Taxi Culemborg", "ORG:DagDag Taxi",
+  "N:;DagDag Taxi;;;", "FN:DagDag Taxi", "ORG:DagDag Taxi",
   `TEL;TYPE=CELL,VOICE:${SITE.phoneE164}`,
   `URL:${SITE.url}/`,
   "ADR;TYPE=WORK:;;;Culemborg;Gelderland;;Nederland",
