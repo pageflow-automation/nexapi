@@ -31,6 +31,16 @@
       "source": "/huisstijl",
       "destination": "/merk",
       "permanent": false
+    },
+    {
+      "source": "/review",
+      "destination": "https://g.page/r/CWe9704hTE20EBI/review",
+      "permanent": false
+    },
+    {
+      "source": "/reviews",
+      "destination": "/review",
+      "permanent": true
     }
   ],
   "headers": [

@@ -15,7 +15,10 @@ export const SITE = {
   // Shown in copy and structured data. Keep in sync with the "Dag & nacht" promise.
   hours: "Dag en nacht bereikbaar, 7 dagen per week",
   // Dutch law requires the KvK number on a business website. Fill it in and it appears in the footer.
-  kvk: "",
+  kvk: "83573542",
+  // Google Business Profile: review form (short link /review redirects here) and the profile itself
+  reviewUrl: "https://g.page/r/CWe9704hTE20EBI/review",
+  gbpUrl: "https://maps.app.goo.gl/PxYRgYSjKCskKK8G7",
   waDefault: "Hallo DagDag Taxi, ik wil graag een taxi.\n\nOphalen: \nNaar: \nWanneer: ",
 };
 

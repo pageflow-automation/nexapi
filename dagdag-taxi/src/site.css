@@ -508,6 +508,8 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
 .contact-card { background: var(--paper-2); border-radius: 20px; padding: 28px; display: grid; gap: 10px; align-content: start; }
 .contact-big { display: inline-flex; align-items: center; gap: 12px; font-weight: 900; font-stretch: 115%; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; text-decoration: none; }
 .contact-big .i-wa { width: 36px; height: 36px; color: #128c4a; }
+.contact-review { background: var(--yellow); }
+.ftr-review { color: var(--yellow); font-weight: 700; }
 .contact-mid { font-weight: 900; font-stretch: 115%; font-size: 30px; line-height: 1.1; }
 
 /* ---------- Footer ---------- */

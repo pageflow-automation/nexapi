@@ -301,6 +301,16 @@ function contact() {
     <p class="contact-mid">Culemborg e.o.</p>
     <p><a href="/werkgebied">Bekijk alle plaatsen</a></p>
   </div>
+  <div class="contact-card contact-review">
+    <p class="label">Met ons meegereden?</p>
+    <a class="contact-big" href="/review" target="_blank" rel="noopener">★ Laat een review achter</a>
+    <p>Dat kost je een halve minuut en helpt ons enorm. Dank je wel!</p>
+  </div>
+  <div class="contact-card">
+    <p class="label">Op de kaart</p>
+    <p class="contact-mid">Google Maps</p>
+    <p><a href="${SITE.gbpUrl}" target="_blank" rel="noopener">Bekijk DagDag Taxi op Google</a></p>
+  </div>
 </div>`),
       saveNumber(),
       faq([HOME_FAQ[0], HOME_FAQ[1], HOME_FAQ[4]]),

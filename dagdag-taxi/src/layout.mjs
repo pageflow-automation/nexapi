@@ -95,6 +95,7 @@ function footer() {
       <p><a class="ftr-big" href="${tel}">${SITE.phoneDisplay}</a></p>
       <p><a href="${esc(wa())}" target="_blank" rel="noopener">WhatsApp ons</a></p>
       <p class="ftr-muted">${SITE.hours}</p>
+      <p><a class="ftr-review" href="/review" target="_blank" rel="noopener">★ Laat een review achter</a></p>
     </div>
     <div>
       <p class="label">Ritten</p>

@@ -182,6 +182,8 @@ export function businessLd() {
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       opens: "00:00", closes: "23:59",
     }],
+    hasMap: SITE.gbpUrl,
+    sameAs: [SITE.gbpUrl],
     contactPoint: [{ "@type": "ContactPoint", telephone: SITE.phoneE164, contactType: "customer service", areaServed: "NL", availableLanguage: ["Dutch"] }],
   };
 }

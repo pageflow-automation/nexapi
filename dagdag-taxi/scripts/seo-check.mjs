@@ -12,8 +12,11 @@ const pages = fs.readdirSync(DIST).filter((f) => f.endsWith(".html"));
 const pathOf = (f) => (f === "index.html" ? "/" : `/${f.replace(/\.html$/, "")}`);
 const meta = (html, name) => (html.match(new RegExp(`<meta (?:name|property)="${name}" content="([^"]*)"`)) || [])[1];
 const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+// Paths handled by redirects in vercel.json (e.g. /review → Google review form) count as valid links.
+const REDIRECTS = new Set(JSON.parse(fs.readFileSync(path.join(DIST, "../vercel.json"), "utf8")).redirects.filter((r) => !r.has).map((r) => r.source));
 const exists = (href) => {
   const p = decodeURIComponent(href.split(/[?#]/)[0]);
+  if (REDIRECTS.has(p)) return true;
   if (p === "/") return fs.existsSync(path.join(DIST, "index.html"));
   const f = path.join(DIST, p);
   return fs.existsSync(f) && fs.statSync(f).isFile() || fs.existsSync(f + ".html");
