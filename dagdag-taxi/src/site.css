@@ -603,6 +603,8 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
 
   .hero { min-height: 0; padding-top: 28px; }
   .hero-art { position: relative; right: auto; top: auto; translate: none; width: min(92%, 440px); margin: 36px auto 0; order: 2; }
+  .sun { transform: none !important; }
+  .hero-art .clock { position: relative; left: auto; bottom: auto; width: fit-content; margin: -24px auto 0; }
   .hero-sub { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "text" "aside"; }
   .hero-sub .hero-aside { margin-top: 36px; }
   .departures-inner, .prose-cols, .area, .faq, .save-card { grid-template-columns: minmax(0, 1fr); }

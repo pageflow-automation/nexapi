@@ -185,7 +185,7 @@
       if (tx <= -half) tx += half; if (tx > 0) tx -= half;
       track.style.transform = `translate3d(${tx}px,0,0)`;
     }
-    if (sunEl && y < vh() * 1.2) {
+    if (sunEl && y < vh() * 1.2 && innerWidth > 900) { // desktop only: on phones the sun sits in the flow and would slide over the ticker
       sunEl.style.transform = `translate3d(0, ${y * 0.22}px, 0) rotate(${y * 0.02}deg)`;
     }
     if (samples.length) {
