@@ -144,13 +144,101 @@ export const TOWNS = [
     faq: [["Kan ik vanaf station Utrecht Centraal naar Wijk bij Duurstede?", "Ja. Bel of app met je aankomsttijd, dan spreken we af waar we je oppikken."]],
     near: ["taxi-houten", "taxi-beusichem"],
   },
+  // ---- Villages: own page for the long tail ("taxi Beesd", "taxi Maurik"…). Not drawn on the map. ----
+  {
+    slug: "taxi-tricht", name: "Tricht", gemeente: "West Betuwe", lat: 51.8915, lng: 5.2600, village: true,
+    lede: "Tricht ligt precies tussen Culemborg en Geldermalsen. Voor ons is dat een paar minuten rijden.",
+    body: [
+      "Geen station in het dorp zelf, dus voor de trein moet je naar Geldermalsen of Culemborg. Wij brengen je erheen, of halen je daar op als je laat terugkomt.",
+      "Ook voor het ziekenhuis in Tiel, een verjaardag in de buurt of een vroege vlucht vanaf Schiphol kun je DagDag bellen.",
+    ],
+    dests: ["station-culemborg", "rivierenland", "utrecht-cs", "schiphol"],
+    faq: [["Halen jullie op in Tricht zelf?", "Ja, aan huis. Geef je adres door, dan staan we op de afgesproken tijd voor de deur."]],
+    near: ["taxi-geldermalsen", "taxi-meteren", "taxi-beesd"],
+  },
+  {
+    slug: "taxi-meteren", name: "Meteren", gemeente: "West Betuwe", lat: 51.8660, lng: 5.2810, village: true,
+    lede: "Meteren ligt net onder Geldermalsen, met de A2 en de A15 vlakbij.",
+    body: [
+      "Handig voor ritten naar Den Bosch, Utrecht en de luchthavens. En dichtbij voor ons: vanuit Culemborg zijn we er zo.",
+      "Moet je naar station Geldermalsen of naar het ziekenhuis in Tiel? Bel of app, dan spreken we een tijd af.",
+    ],
+    dests: ["rivierenland", "den-bosch", "eindhoven-ap", "schiphol"],
+    faq: [["Rijden jullie vanuit Meteren naar Eindhoven Airport?", "Ja. Geef je vluchttijd door, dan plannen we de ophaaltijd met ruimte voor file."]],
+    near: ["taxi-geldermalsen", "taxi-tricht", "taxi-zaltbommel"],
+  },
+  {
+    slug: "taxi-beesd", name: "Beesd", gemeente: "West Betuwe", lat: 51.8880, lng: 5.1900, village: true,
+    lede: "Beesd ligt aan de Linge, tussen Geldermalsen en Leerdam.",
+    body: [
+      "Van station Beesd naar huis, van het dorp naar het ziekenhuis, of vroeg op pad naar Schiphol: bel of app DagDag.",
+      "We halen je op in Beesd en de buurtschappen eromheen, en brengen je waar je moet zijn.",
+    ],
+    dests: ["antonius", "rivierenland", "utrecht-cs", "schiphol"],
+    faq: [["Kan ik een taxi naar het ziekenhuis in Nieuwegein boeken vanuit Beesd?", "Ja. Geef je afspraaktijd door, dan rekenen we terug wanneer we je ophalen."]],
+    near: ["taxi-leerdam", "taxi-geldermalsen", "taxi-tricht"],
+  },
+  {
+    slug: "taxi-maurik", name: "Maurik", gemeente: "Buren", lat: 51.9600, lng: 5.4240, village: true,
+    lede: "Maurik, aan de Nederrijn. Bekend van het Eiland van Maurik, en een eind van de dichtstbijzijnde trein.",
+    body: [
+      "Ben je in Maurik op bezoek, op de camping of aan het water, en wil je naar een station of naar huis? Bel of app, dan halen we je op.",
+      "Ook voor ritten naar Ziekenhuis Rivierenland in Tiel, naar Utrecht of naar Schiphol.",
+    ],
+    dests: ["rivierenland", "utrecht-cs", "umc", "schiphol"],
+    faq: [["Halen jullie ook op bij het Eiland van Maurik?", "Ja. Zeg waar je precies staat, dan komen we je daar ophalen."]],
+    near: ["taxi-buren", "taxi-zoelen", "taxi-lienden"],
+  },
+  {
+    slug: "taxi-zoelen", name: "Zoelen", gemeente: "Buren", lat: 51.9170, lng: 5.4010, village: true,
+    lede: "Zoelen ligt tussen Buren en Tiel, vlak bij Kasteel Soelen.",
+    body: [
+      "Voor station Tiel, het ziekenhuis in Tiel of een rit verder weg: DagDag rijdt vanuit Culemborg naar Zoelen en weer terug.",
+      "Bel of app met je adres en tijd. Ook voor een vaste rit, bijvoorbeeld elke week naar een afspraak.",
+    ],
+    dests: ["rivierenland", "den-bosch", "utrecht-cs", "schiphol"],
+    faq: [["Kan ik vaste ritten afspreken vanuit Zoelen?", "Ja. Bijvoorbeeld elke week naar dezelfde afspraak. Bel ons om het door te spreken."]],
+    near: ["taxi-tiel", "taxi-buren", "taxi-maurik"],
+  },
+  {
+    slug: "taxi-lienden", name: "Lienden", gemeente: "Buren", lat: 51.9470, lng: 5.5170, village: true,
+    lede: "Lienden ligt aan de Nederrijn, in het oosten van de gemeente Buren.",
+    body: [
+      "Moet je naar station Tiel, naar Ziekenhuis Rivierenland of naar Schiphol? Bel of app DagDag, dan spreken we een tijd af.",
+      "We rijden ook in de dorpen eromheen, zoals Ingen en Ommeren.",
+    ],
+    dests: ["rivierenland", "utrecht-cs", "umc", "schiphol"],
+    faq: [["Rijden jullie ook in Ingen en Ommeren?", "Ja. Geef je adres door, dan komen we je ophalen."]],
+    near: ["taxi-maurik", "taxi-zoelen", "taxi-tiel"],
+  },
+  {
+    slug: "taxi-everdingen", name: "Everdingen", gemeente: "Vijfheerenlanden", lat: 51.9700, lng: 5.1280, village: true,
+    lede: "Everdingen ligt aan de Lek, tussen Culemborg en Vianen, vlak bij Fort Everdingen.",
+    body: [
+      "Via de A2 of de A27 ben je snel in Utrecht, Nieuwegein of op weg naar Schiphol. Wij rijden je erheen.",
+      "Ook voor een korte rit naar Culemborg of Vianen kun je bellen of appen.",
+    ],
+    dests: ["antonius", "utrecht-cs", "umc", "schiphol"],
+    faq: [["Hoe snel zijn jullie in Everdingen?", "Everdingen ligt vlak bij Culemborg. Bel of app, dan hoor je meteen hoe laat we er zijn."]],
+    near: ["taxi-vianen", "taxi-schalkwijk", "taxi-leerdam"],
+  },
+  {
+    slug: "taxi-schalkwijk", name: "Schalkwijk", gemeente: "Houten", lat: 52.0040, lng: 5.1860, village: true,
+    lede: "Schalkwijk ligt aan de overkant van de Lek, bij Fort Honswijk. Dichtbij Culemborg, maar zonder eigen station.",
+    body: [
+      "Naar station Houten, naar Utrecht of naar het ziekenhuis in Nieuwegein: bel of app, dan halen we je op in Schalkwijk of Tull en ’t Waal.",
+      "Ook voor ritten naar Schiphol of terug naar huis na een avond uit.",
+    ],
+    dests: ["utrecht-cs", "antonius", "umc", "schiphol"],
+    faq: [["Rijden jullie ook in Tull en ’t Waal?", "Ja. Geef je adres door, dan komen we je ophalen."]],
+    near: ["taxi-houten", "taxi-everdingen", "taxi-wijk-bij-duurstede"],
+  },
 ];
 
 // Villages mentioned in the service area (no own page).
 export const VILLAGES = [
-  "Asch", "Beesd", "Buurmalsen", "Erichem", "Everdingen", "Hagestein", "Ingen", "Kerk-Avezaath",
-  "Lexmond", "Lienden", "Maurik", "Meteren", "Ravenswaaij", "Rijswijk (Gld)", "Schalkwijk",
-  "Tricht", "Zijderveld", "Zoelen",
+  "Asch", "Buurmalsen", "Erichem", "Hagestein", "Ingen", "Kerk-Avezaath",
+  "Lexmond", "Ommeren", "Ravenswaaij", "Rijswijk (Gld)", "Tull en ’t Waal", "Zijderveld",
 ];
 
 // "Een dag met DagDag" scroll story. Illustrative, not real bookings.

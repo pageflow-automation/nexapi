@@ -26,6 +26,28 @@
   const sun = $("[data-sun]");
   sun && sun.addEventListener("pointerenter", () => wave($("[data-logo]", sun)));
 
+  // Tap or click any hand (logo, hero, footer, map) and it waves.
+  document.addEventListener("pointerdown", (e) => {
+    const holder = e.target.closest("[data-logo], .hdr-logo, [data-sun], .ftr-logo, .map-home");
+    if (!holder) return;
+    wave(holder.matches("[data-logo]") ? holder : $("[data-logo]", holder) || holder);
+  });
+
+  // Scrolling makes the header logo wave (at most once every 4 s), and every big hand
+  // waves when it scrolls into view.
+  let lastScrollWave = -1e9, lastScrollAt = 0, gestureStartY = scrollY;
+  addEventListener("scroll", () => {
+    const now = performance.now();
+    if (now - lastScrollAt > 250) gestureStartY = scrollY; // a new scroll movement starts
+    lastScrollAt = now;
+    if (Math.abs(scrollY - gestureStartY) > 60 && now - lastScrollWave > 4000) {
+      lastScrollWave = now;
+      wave($(".hdr [data-logo]"));
+    }
+  }, { passive: true });
+  const waveIO = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) wave(e.target); }), { threshold: 0.6 });
+  $$(".sun [data-logo], .map-home [data-logo], .motif-art [data-logo]").forEach((el) => waveIO.observe(el));
+
   // ---------- Header ----------
   const hdr = $("[data-hdr]");
   const onHdr = () => hdr.classList.toggle("is-scrolled", scrollY > 8);

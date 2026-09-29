@@ -155,7 +155,7 @@ await pdf(`
 </div>`, 96, 96, path.join(PUB, "print/sticker.pdf"));
 
 // Flyer A6 105×148 (+3 mm bleed = 111×154)
-const flyerTowns = ["Culemborg", ...TOWNS.map((t) => t.name)].join(" · ");
+const flyerTowns = ["Culemborg", ...TOWNS.filter((t) => !t.village).map((t) => t.name)].join(" · ");
 await pdf(`
 <div class="pg" style="background:${PAPER};color:${INK}">
   <div style="position:absolute;right:-26mm;top:-22mm;width:92mm;height:92mm;border-radius:50%;background:${YEL}"></div>

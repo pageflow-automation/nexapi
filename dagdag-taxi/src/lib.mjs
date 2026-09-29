@@ -118,7 +118,7 @@ const smooth = (pts) => {
 export function radiusMap({ highlight } = {}) {
   const c = MAP.size / 2;
   const rings = [5, 10, 15, 20];
-  const towns = [...TOWNS].sort((a, b) => km(HOME, a) - km(HOME, b));
+  const towns = TOWNS.filter((t) => !t.village).sort((a, b) => km(HOME, a) - km(HOME, b));
   const utrecht = { name: "Utrecht", lat: 52.0907, lng: 5.1214, slug: null };
   const airports = ["schiphol", "rotterdam-ap", "eindhoven-ap"].map((id) => {
     const d = DEST[id];
@@ -157,7 +157,7 @@ ${airports.map((a) => {
     return `<g class="map-air"><path d="M-10 -8 L2 0 L-10 8" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${deg.toFixed(1)})"/><text x="${lx.toFixed(1)}" y="${(ly + dy).toFixed(1)}" text-anchor="${anchor}">${esc(a.label)}<tspan class="map-air-min" x="${lx.toFixed(1)}" dy="18">${a.min} min</tspan></text></g>`;
   }).join("\n")}
 ${[utrecht, ...towns].map(pt).join("\n")}
-<g class="map-home"><circle cx="${c}" cy="${c}" r="26"/><svg x="${c - 17}" y="${c - 17}" width="34" height="34" viewBox="${MARK_VB}"><use href="${SPRITE}#p-hand"/></svg>
+<g class="map-home"><circle cx="${c}" cy="${c}" r="26"/><svg x="${c - 17}" y="${c - 17}" width="34" height="34" viewBox="${MARK_VB}" data-logo><use class="logo-hand" href="${SPRITE}#p-hand"/></svg>
 <text x="${c}" y="${c + 50}" text-anchor="middle">Culemborg</text></g>
 </svg>
 </figure>`;

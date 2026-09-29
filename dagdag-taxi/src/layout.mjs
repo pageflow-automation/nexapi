@@ -110,7 +110,7 @@ function footer() {
       <p class="label">Werkgebied</p>
       <ul class="ftr-towns">
         <li><a href="/">Taxi Culemborg</a></li>
-${TOWNS.map((t) => `        <li><a href="/${t.slug}">Taxi ${esc(t.name)}</a></li>`).join("\n")}
+${TOWNS.filter((t) => !t.village).map((t) => `        <li><a href="/${t.slug}">Taxi ${esc(t.name)}</a></li>`).join("\n")}
       </ul>
     </div>
   </div>
@@ -172,7 +172,7 @@ export function heroSub({ tagText, title, lede, waText, aside = "" }) {
 }
 
 export function ticker() {
-  const names = ["Culemborg", ...TOWNS.map((t) => t.name), "Utrecht", "Schiphol"];
+  const names = ["Culemborg", ...TOWNS.filter((t) => !t.village).map((t) => t.name), "Utrecht", "Schiphol"];
   const run = names.map((n) => `<span>${esc(n)}</span>${mark("tick-mark")}`).join("");
   return `<div class="ticker" aria-hidden="true"><div class="ticker-track" data-ticker>${run}${run}</div></div>`;
 }
@@ -235,9 +235,9 @@ export function mapSection({ title = "Culemborg en alles eromheen.", highlight, 
     <p class="lede">${intro || "We halen op in Culemborg en in de steden en dorpen tot zo’n twintig kilometer daaromheen. Naar de luchthavens rijden we door het hele land."}</p>
     <ul class="town-links">
       <li><a href="/">Culemborg</a></li>
-${TOWNS.map((t) => `      <li><a href="/${t.slug}" data-town-link="${t.slug}"${highlight === t.slug ? ' aria-current="page"' : ""}>${esc(t.name)}</a></li>`).join("\n")}
+${TOWNS.filter((t) => !t.village).map((t) => `      <li><a href="/${t.slug}" data-town-link="${t.slug}"${highlight === t.slug ? ' aria-current="page"' : ""}>${esc(t.name)}</a></li>`).join("\n")}
     </ul>
-    <p class="area-villages">Ook in ${VILLAGES.slice(0, -1).join(", ")} en ${VILLAGES[VILLAGES.length - 1]}.</p>
+    <p class="area-villages">Ook in ${TOWNS.filter((t) => t.village).map((t) => `<a href="/${t.slug}">${esc(t.name)}</a>`).join(", ")}, ${VILLAGES.slice(0, -1).map(esc).join(", ")} en ${esc(VILLAGES[VILLAGES.length - 1])}.</p>
   </div>
   ${radiusMap({ highlight })}
 </section>`;

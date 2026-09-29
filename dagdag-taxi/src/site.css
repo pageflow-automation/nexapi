@@ -408,6 +408,7 @@ em { font-style: italic; }
 .town-links a:hover, .town-links a.is-hot { background: var(--yellow); transform: translateY(-2px); }
 .town-links a[aria-current="page"] { background: var(--ink); color: var(--paper); }
 .area-villages { font-size: 16px; color: var(--muted); }
+.area-villages a { color: var(--ink); font-weight: 700; }
 .map > svg { width: 100%; height: auto; overflow: visible; }
 .map-home svg { overflow: visible; }
 .map-bg { fill: var(--paper-2); }

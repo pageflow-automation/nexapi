@@ -110,7 +110,7 @@ ${t.body.map((p) => `    <p>${esc(p)}</p>`).join("\n")}
 
 // ---------------- Werkgebied ----------------
 function werkgebied() {
-  const rows = [...TOWNS].sort((a, b) => minutes(HOME, a) - minutes(HOME, b)).map((t) => townRow(t));
+  const rows = TOWNS.filter((t) => !t.village).sort((a, b) => minutes(HOME, a) - minutes(HOME, b)).map((t) => townRow(t));
   return {
     path: "/werkgebied", og: "werkgebied",
     title: "Werkgebied – taxi in Culemborg en omgeving | DagDag Taxi",
@@ -123,7 +123,10 @@ function werkgebied() {
       prose(`<div class="prose-cols">
   <h2 class="h2">En de dorpen ertussen.</h2>
   <div>
-    <p>Woon je in een dorp dat hier niet staat? Grote kans dat we er gewoon komen. We rijden onder meer in ${VILLAGES.map(esc).join(", ")}.</p>
+    <ul class="plain">
+${TOWNS.filter((t) => t.village).map((t) => `      <li><a href="/${t.slug}">Taxi ${esc(t.name)}</a>, ongeveer ${minutes(HOME, t)} minuten vanaf Culemborg</li>`).join("\n")}
+    </ul>
+    <p>Woon je in een dorp dat hier niet staat? Grote kans dat we er gewoon komen. We rijden onder meer ook in ${VILLAGES.map(esc).join(", ")}.</p>
     <p>Twijfel je? Bel <a href="${tel}">${PHONE}</a> of stuur een WhatsApp, dan hoor je het meteen.</p>
   </div>
 </div>`),
