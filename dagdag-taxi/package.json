@@ -1,0 +1,14 @@
+{
+  "name": "dagdag-taxi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website DagDag Taxi Culemborg. Static, no runtime dependencies.",
+  "scripts": {
+    "build": "node build.mjs && node scripts/seo-check.mjs",
+    "dev": "node build.mjs --serve",
+    "check": "node scripts/seo-check.mjs",
+    "assets": "cd tools && npm install && npm run assets"
+  },
+  "engines": { "node": ">=18" }
+}

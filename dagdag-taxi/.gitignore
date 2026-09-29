@@ -1,0 +1,6 @@
+dist/
+node_modules/
+tools/node_modules/
+tools/out/
+_work/
+.vercel
