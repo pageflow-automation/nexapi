@@ -194,27 +194,37 @@ ${SERVICES.map((s, i) => `    <li class="reveal" style="--d:${i * 0.06}s"><a cla
 </section>`;
 }
 
+// "Een dag met DagDag": six example rides from dawn to deep night, as one day-to-night strip.
+// Normal page flow (no pinned scrolling), so it reads like any other section on a phone.
+const SKY = {
+  "05": { bg: "#262431", dark: true, glow: true }, "08": { bg: "#f6e1b8" }, "13": { bg: "#fbf3dc" },
+  "17": { bg: "#f4c261" }, "23": { bg: "#1d1c23", dark: true }, "03": { bg: "#111110", dark: true },
+};
 export function story() {
-  return `<section class="story" aria-labelledby="story-h" data-story>
-  <div class="story-sticky">
-    <div class="story-sky" aria-hidden="true">
-      <div class="story-stars"></div>
-      <div class="story-body" data-story-body></div>
-      <div class="story-horizon"></div>
-    </div>
-    <div class="story-inner wrap">
-      <div class="story-head">
-        ${tag("Een dag met DagDag")}
-        <h2 class="h2" id="story-h">Om vijf uur ’s ochtends. Of om drie uur ’s nachts.</h2>
-      </div>
-      <p class="story-clock" aria-hidden="true" data-story-clock>05:40</p>
-      <ol class="story-list">
-${DAY.map((d, i) => `        <li class="story-item" data-story-item="${i}"><p class="story-time">${d.t}</p><h3>${esc(d.title)}</h3><p>${esc(d.text)}</p></li>`).join("\n")}
-      </ol>
-      <p class="story-note">Zo kan een dag eruitzien. Jouw rit past er ook tussen.</p>
-    </div>
+  const slots = DAY.map((d) => {
+    const [h, m] = d.t.split(":").map(Number);
+    const hour = h + m / 60;
+    const isSun = hour >= 5.5 && hour < 20;
+    // height of sun/moon above the horizon: 0 at rise/set, 1 at the top of its arc
+    const arc = isSun ? Math.sin(Math.PI * Math.min(1, Math.max(0, (hour - 5.6) / 14.2))) : Math.sin(Math.PI * Math.min(1, Math.max(0, ((hour < 12 ? hour + 24 : hour) - 20) / 10)));
+    return { ...d, isSun, arc: Math.max(0.04, arc), sky: SKY[d.t.slice(0, 2)] };
+  });
+  return `<section class="day wrap" aria-labelledby="day-h">
+  <div class="sec-head">
+    ${tag("Een dag met DagDag")}
+    <h2 class="h2" id="day-h">Om vijf uur ’s ochtends. Of om drie uur ’s nachts.</h2>
+    <p class="lede">Zo kan een dag eruitzien. Jouw rit past er ook tussen.</p>
   </div>
-</section>`;
+  <ol class="day-strip" data-day>
+${slots.map((d, i) => `    <li class="day-slot${d.sky.dark ? " is-dark" : ""}${d.sky.glow ? " is-dawn" : ""}" style="--bg:${d.sky.bg};--prev:${(slots[i - 1] || d).sky.bg};--next:${(slots[i + 1] || d).sky.bg};--arc:${d.arc.toFixed(2)};--i:${i}">
+      <div class="day-sky" aria-hidden="true"><span class="day-body ${d.isSun ? "is-sun" : "is-moon"}"></span></div>
+      <p class="day-time">${d.t}</p>
+      <h3>${esc(d.title)}</h3>
+      <p class="day-text">${esc(d.text)}</p>
+    </li>`).join("\n")}
+  </ol>
+</section>
+`;
 }
 
 export function mapSection({ title = "Culemborg en alles eromheen.", highlight, intro } = {}) {

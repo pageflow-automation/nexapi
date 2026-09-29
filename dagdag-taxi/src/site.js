@@ -65,7 +65,7 @@
     e.target.classList.add("is-in");
     io.unobserve(e.target);
   }), { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
-  $$(".reveal, [data-map]").forEach((el) => io.observe(el));
+  $$(".reveal, [data-map], [data-day]").forEach((el) => io.observe(el));
 
   // ---------- Map ↔ town links ----------
   $$("[data-town-link]").forEach((link) => {
@@ -122,62 +122,6 @@
 
   if (reduce) return; // Everything below is scroll-driven motion.
 
-  // ---------- Story: from day to night ----------
-  const story = $("[data-story]");
-  let storyTick = null;
-  if (story) {
-    story.classList.add("is-live");
-    const items = $$("[data-story-item]", story);
-    const clockEl = $("[data-story-clock]", story);
-    const body = $("[data-story-body]", story);
-    const toMin = (t) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
-    let times = items.map((li) => toMin($(".story-time", li).textContent));
-    for (let i = 1; i < times.length; i++) while (times[i] < times[i - 1]) times[i] += 1440;
-    const SKY = [ // [hour, r, g, b]: long nights, quick dawn and dusk so the sky never sits in a muddy middle
-      [0, 17, 17, 16], [5.7, 22, 22, 28], [6.35, 244, 221, 176], [7.2, 243, 239, 230], [17.2, 243, 239, 230],
-      [19.1, 245, 206, 128], [19.8, 58, 44, 52], [20.5, 17, 17, 16], [24, 17, 17, 16], [30, 17, 17, 16],
-    ];
-    const skyAt = (h) => {
-      let i = 0; while (i < SKY.length - 2 && SKY[i + 1][0] < h) i++;
-      const [h0, ...a] = SKY[i], [h1, ...b] = SKY[i + 1];
-      const t = clamp((h - h0) / (h1 - h0));
-      return a.map((v, k) => Math.round(lerp(v, b[k], t)));
-    };
-    let last = -1;
-    storyTick = () => {
-      const r = story.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh()) return;
-      const p = clamp(-r.top / (r.height - vh()));
-      const seg = p * items.length;
-      const i = Math.min(items.length - 1, Math.floor(seg));
-      const f = seg - i;
-      const next = times[Math.min(i + 1, times.length - 1)];
-      const minute = i === items.length - 1 ? times[i] : lerp(times[i], next, clamp((f - 0.55) / 0.45));
-      const shown = f < 0.55 || i === items.length - 1 ? times[i] : Math.round(minute / 5) * 5;
-      const hh = String(Math.floor(shown / 60) % 24).padStart(2, "0"), mm = String(Math.round(shown % 60)).padStart(2, "0");
-      clockEl.textContent = `${hh}:${mm}`;
-      if (i !== last) { items.forEach((li, k) => li.classList.toggle("is-on", k === i)); last = i; }
-
-      const hour = minute / 60;
-      const [cr, cg, cb] = skyAt(hour);
-      const lum = (0.299 * cr + 0.587 * cg + 0.114 * cb) / 255;
-      story.style.setProperty("--sky", `rgb(${cr} ${cg} ${cb})`);
-      const night = lum < 0.5;
-      story.style.setProperty("--s-ink", night ? "#f3efe6" : "#141414");
-      story.style.setProperty("--s-muted", night ? "#b9b1a2" : "#675f52");
-      story.style.setProperty("--stars", String(clamp((0.45 - lum) * 3)));
-
-      // Sun by day (6–20h), moon by night (20–30h); both ride an arc over the horizon.
-      const isDay = hour >= 6 && hour < 20;
-      const a = isDay ? (hour - 6) / 14 : ((hour < 6 ? hour + 24 : hour) - 20) / 10;
-      const w = story.clientWidth, H = vh(), size = body.offsetWidth;
-      const x = lerp(-0.05, 0.95, a) * w - size / 2 + w * 0.05;
-      const y = H * 0.74 - Math.sin(Math.PI * clamp(a)) * H * 0.34 - size / 2;
-      body.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      body.style.setProperty("--phase", isDay ? "120%" : "38%");
-    };
-  }
-
   // ---------- Ticker with scroll velocity ----------
   const track = $("[data-ticker]");
   let tx = 0, vel = 0, dir = -1, lastY = scrollY, tickerOn = false;
@@ -233,7 +177,6 @@
     if (sunEl && y < vh() * 1.2) {
       sunEl.style.transform = `translate3d(0, ${y * 0.22}px, 0) rotate(${y * 0.02}deg)`;
     }
-    if (storyTick) storyTick();
     if (samples.length) {
       const r = route.getBoundingClientRect();
       if (r.bottom > 0 && r.top < vh()) {

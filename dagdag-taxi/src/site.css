@@ -344,57 +344,53 @@ em { font-style: italic; }
 .flaps-time .flap { color: var(--yellow); }
 .board-note { margin-top: 14px; font-size: 15px; color: var(--night-muted); }
 
-/* ---------- Story: a day with DagDag ---------- */
-.story { --sky: var(--paper); --s-ink: var(--ink); --s-muted: var(--muted); position: relative; background: var(--sky); color: var(--s-ink); }
-.story-sticky { position: relative; }
-.story-sky { display: none; }
-.story-inner { padding-block: clamp(80px, 10vw, 130px); display: grid; gap: 36px; }
-.story-clock { display: none; }
-.story-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.story-item { background: var(--paper-2); border-radius: 16px; padding: 24px; }
-.story-item h3 { font-weight: 900; font-stretch: 115%; font-size: 26px; margin: 6px 0 6px; letter-spacing: -.02em; }
-.story-time { font: 700 18px/1 var(--mono); color: var(--muted); }
-.story-note { color: var(--s-muted); font-size: 17px; }
-
-/* Live (scroll-driven) mode, enabled by JS when motion is allowed */
-.story.is-live { height: 560vh; }
-.story.is-live .story-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.story.is-live .story-sky { display: block; position: absolute; inset: 0; pointer-events: none; }
-.story-horizon { position: absolute; left: 0; right: 0; top: 74%; height: 2px; background: currentColor; opacity: .18; }
-.story-body {
-  position: absolute; left: 0; top: 0; width: clamp(120px, 16vw, 220px); aspect-ratio: 1;
+/* ---------- A day with DagDag: dawn-to-night strip ---------- */
+.day { padding-block: clamp(80px, 10vw, 130px) clamp(40px, 6vw, 80px); }
+.day-strip {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-radius: 24px; overflow: hidden;
+  box-shadow: 0 1px 0 var(--line);
+}
+.day-slot {
+  --fg: var(--ink); --fg-2: #3d3a33;
+  position: relative;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 0 22px 28px;
+  /* soft seams only, so the six slots read as one sky without muddy bands */
+  background: linear-gradient(90deg, color-mix(in srgb, var(--prev) 50%, var(--bg)), var(--bg) 16px calc(100% - 16px), color-mix(in srgb, var(--next) 50%, var(--bg)));
+  color: var(--fg);
+}
+.day-slot.is-dark { --fg: #f3efe6; --fg-2: #c9c1b2; }
+.day-sky { position: relative; height: 150px; margin: 0 -22px 22px; overflow: hidden; border-bottom: 2px solid color-mix(in srgb, currentColor 18%, transparent); }
+.is-dawn .day-sky { background: radial-gradient(60% 70% at 50% 100%, rgba(240, 150, 80, .6), rgba(240, 150, 80, 0)); }
+.is-dark:not(.is-dawn) .day-sky {
+  background-image:
+    radial-gradient(1.6px 1.6px at 18% 24%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 72% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1.8px 1.8px at 40% 46%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 86% 52%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 10% 62%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 58% 70%, #fff 50%, transparent 51%);
+}
+.day-body {
+  --size: 58px;
+  position: absolute; left: 50%; bottom: 0;
+  width: var(--size); height: var(--size); margin: 0 0 calc(var(--size) / -2) calc(var(--size) / -2);
   border-radius: 50%; background: var(--yellow);
-  will-change: transform;
+  transform: translateY(calc(var(--arc) * -96px));
 }
-.story-body::after { /* the moon's shadow: slides in at night */
-  content: ""; position: absolute; inset: -2px; border-radius: 50%;
-  background: var(--sky);
-  transform: translateX(var(--phase, 120%));
+.day-body.is-sun { box-shadow: 0 0 0 10px rgba(253, 188, 24, .18); }
+.day-body.is-moon { --size: 48px; background: #f6e7b8; }
+.day-body.is-moon::after { /* crescent */
+  content: ""; position: absolute; inset: -1px -1px -1px 12px; border-radius: 50%;
+  background: var(--bg); transform: translateX(10px);
 }
-.story-stars { position: absolute; inset: 0 0 26% 0; opacity: var(--stars, 0); background-image:
-  radial-gradient(2px 2px at 12% 22%, #fff 50%, transparent 51%), radial-gradient(2px 2px at 28% 64%, #fff 50%, transparent 51%),
-  radial-gradient(1.5px 1.5px at 44% 18%, #fff 50%, transparent 51%), radial-gradient(2px 2px at 63% 40%, #fff 50%, transparent 51%),
-  radial-gradient(1.5px 1.5px at 77% 12%, #fff 50%, transparent 51%), radial-gradient(2px 2px at 88% 52%, #fff 50%, transparent 51%),
-  radial-gradient(1.5px 1.5px at 8% 48%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 54% 70%, #fff 50%, transparent 51%); }
-.story.is-live .story-inner { position: relative; height: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto; align-items: end; padding-block: calc(var(--hdr) + 24px) 40px; }
-.story.is-live .story-head { grid-column: 1 / -1; align-self: start; }
-.story.is-live .story-head .h2 { font-size: clamp(30px, 3.8vw, 54px); max-width: 17ch; }
-.story.is-live .story-clock {
-  display: block; grid-column: 1; align-self: end;
-  font: 700 clamp(72px, 11vw, 168px)/.9 var(--mono); letter-spacing: -.04em; font-variant-numeric: tabular-nums;
-}
-.story.is-live .story-list { display: block; position: relative; grid-column: 2; align-self: end; min-height: 230px; }
-.story.is-live .story-item {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  background: color-mix(in srgb, var(--s-ink) 8%, transparent);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  opacity: 0; transform: translateY(24px);
-  transition: opacity .45s var(--ease), transform .6s var(--ease);
-}
-.story.is-live .story-item.is-on { opacity: 1; transform: none; }
-.story.is-live .story-time { color: var(--s-muted); }
-.story.is-live .story-note { grid-column: 1 / -1; }
-.story .tag { background: var(--yellow); }
+.day-time { font: 700 26px/1 var(--mono); letter-spacing: -.02em; }
+.day-slot h3 { font-weight: 900; font-stretch: 105%; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.15; letter-spacing: -.015em; margin-top: 4px; }
+.day-text { font-size: 16px; line-height: 1.5; color: var(--fg-2); }
+
+/* Motion: the sun and moon rise into place when the strip comes into view */
+.js .day-body { transform: translateY(40px); opacity: 0; transition: transform 1.3s var(--ease), opacity .6s; transition-delay: calc(.15s + var(--i) * .12s); }
+.js .day-slot > :not(.day-sky) { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(.25s + var(--i) * .12s); }
+.day-strip.is-in .day-body { opacity: 1; transform: translateY(calc(var(--arc) * -96px)); }
+.day-strip.is-in .day-slot > :not(.day-sky) { opacity: 1; transform: none; }
 
 /* ---------- Area map ---------- */
 .area { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(80px, 11vw, 150px); }
@@ -610,10 +606,7 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
   .ftr-cols { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .bg-grid-3, .bg-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .story.is-live { height: 480vh; }
-  .story.is-live .story-inner { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto auto; padding-bottom: 96px; }
-  .story.is-live .story-clock { grid-column: 1; font-size: clamp(64px, 22vw, 120px); }
-  .story.is-live .story-list { grid-column: 1; min-height: 210px; }
+  .day-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
   .callbar {
     display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
@@ -629,6 +622,20 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
   .callbar-wa .i-wa { color: #128c4a; }
 }
 @media (max-width: 560px) {
+  /* one row per ride: small sky on the left, text on the right */
+  .day-strip { grid-template-columns: 1fr; }
+  .day-slot {
+    display: grid; grid-template-columns: 92px 1fr; column-gap: 16px; align-items: start;
+    padding: 18px 18px 18px 0;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--prev) 50%, var(--bg)), var(--bg) 14px calc(100% - 14px), color-mix(in srgb, var(--next) 50%, var(--bg)));
+  }
+  .day-sky { grid-row: 1 / span 3; align-self: center; height: 88px; margin: 0 0 0 14px; border: 0; border-radius: 12px; box-shadow: inset 0 -2px 0 color-mix(in srgb, currentColor 18%, transparent); }
+  .day-body { --size: 32px; transform: translateY(calc(var(--arc) * -52px)); }
+  .day-body.is-moon { --size: 28px; }
+  .day-body.is-moon::after { left: 7px; transform: translateX(6px); }
+  .day-strip.is-in .day-body { transform: translateY(calc(var(--arc) * -52px)); }
+  .day-time { font-size: 20px; }
+  .day-slot h3 { font-size: 20px; margin-top: 0; }
   .ctas-lg .btn, .ctas .btn { width: 100%; }
   .svc-item { grid-template-columns: 52px 1fr; }
   .svc-icon { width: 52px; height: 52px; }
@@ -644,5 +651,6 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
 /* ---------- Reduced motion: everything visible, nothing moves ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .js .reveal, .js .hero-line > span, .js .sun, .js .map-ring, .js .map-town, .js .map-air { opacity: 1 !important; transform: none !important; scale: 1 !important; }
+  .js .reveal, .js .hero-line > span, .js .sun, .js .map-ring, .js .map-town, .js .map-air, .js .day-slot > :not(.day-sky) { opacity: 1 !important; transform: none !important; scale: 1 !important; }
+  .js .day-body { opacity: 1 !important; }
 }
