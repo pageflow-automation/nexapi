@@ -133,12 +133,12 @@ export function heroHome() {
       <span class="hero-line"><span>Dag</span></span>
       <span class="hero-line hero-line-2"><span><span class="amp">&amp;</span> <em>nacht.</em></span></span>
     </h1>
-    <p class="lede hero-lede reveal">Eén telefoontje en we komen eraan. Naar het station, het ziekenhuis, Schiphol of gewoon naar huis. In Culemborg en alle plaatsen eromheen.</p>
+    <p class="lede hero-lede reveal">Eén telefoontje en we komen eraan. Naar het station, het ziekenhuis, Schiphol of gewoon naar huis. Vanuit Culemborg, door heel Nederland.</p>
     <div class="reveal">${ctas({ size: "ctas-lg" })}</div>
     <ul class="ticks reveal">
       <li>${icon("check")}Bellen of WhatsApp</li>
       <li>${icon("check")}Ook vooruit reserveren</li>
-      <li>${icon("check")}Culemborg &amp; omgeving</li>
+      <li>${icon("check")}Door heel Nederland</li>
     </ul>
   </div>
   <div class="hero-art" aria-hidden="true">
@@ -233,7 +233,7 @@ export function mapSection({ title = "Culemborg en alles eromheen.", highlight, 
   <div class="area-text">
     ${tag("Werkgebied")}
     <h2 class="h2" id="area-h">${esc(title)}</h2>
-    <p class="lede">${intro || "We halen op in Culemborg en in de steden en dorpen tot zo’n twintig kilometer daaromheen. Naar de luchthavens rijden we door het hele land."}</p>
+    <p class="lede">${intro || "We rijden door heel Nederland. Onze thuisbasis is Culemborg, dus in Culemborg en de steden en dorpen eromheen zijn we er het snelst."}</p>
     <ul class="town-links">
       <li><a href="/">Culemborg</a></li>
 ${TOWNS.filter((t) => !t.village).map((t) => `      <li><a href="/${t.slug}" data-town-link="${t.slug}"${highlight === t.slug ? ' aria-current="page"' : ""}>${esc(t.name)}</a></li>`).join("\n")}

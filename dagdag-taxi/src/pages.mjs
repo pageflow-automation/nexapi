@@ -34,7 +34,7 @@ function home() {
   return {
     path: "/", og: "home",
     title: `Taxi Culemborg – DagDag Taxi | Dag & nacht | ${PHONE}`,
-    description: `Taxi nodig in Culemborg? DagDag Taxi rijdt dag en nacht naar station, ziekenhuis, Schiphol en de hele regio. Bel of app ${PHONE}.`,
+    description: `Taxi nodig in Culemborg? DagDag Taxi rijdt dag en nacht naar station, ziekenhuis, Schiphol en door heel Nederland. Bel ${PHONE}.`,
     bodyClass: "is-home",
     ld: [faqLd(HOME_FAQ), serviceLd({ name: "Taxi Culemborg", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/", description: "Taxiritten in Culemborg en omgeving, dag en nacht." })],
     body: [
@@ -113,11 +113,11 @@ function werkgebied() {
   const rows = TOWNS.filter((t) => !t.village).sort((a, b) => minutes(HOME, a) - minutes(HOME, b)).map((t) => townRow(t));
   return {
     path: "/werkgebied", og: "werkgebied",
-    title: "Werkgebied – taxi in Culemborg en omgeving | DagDag Taxi",
-    description: `DagDag Taxi rijdt in Culemborg, Geldermalsen, Houten, Vianen, Tiel, Buren, Leerdam, Zaltbommel en meer. Bekijk alle plaatsen. Bel ${PHONE}.`,
+    title: "Werkgebied: vanuit Culemborg door heel NL | DagDag Taxi",
+    description: `DagDag Taxi rijdt door heel Nederland, vanuit Culemborg. Snel ter plaatse in Geldermalsen, Houten, Vianen, Tiel, Buren en meer. Bel ${PHONE}.`,
     ld: [crumbsLd([["Home", "/"], ["Werkgebied", "/werkgebied"]])],
     body: [
-      heroSub({ tagText: "Werkgebied", title: "Waar we <em>rijden.</em>", lede: "Vanuit Culemborg rijden we de hele regio door: Betuwe, Vijfheerenlanden en het zuiden van Utrecht. Naar de luchthavens rijden we door het hele land." }),
+      heroSub({ tagText: "Werkgebied", title: "Waar we <em>rijden.</em>", lede: "Door heel Nederland. Onze thuisbasis is Culemborg, dus in de Betuwe, de Vijfheerenlanden en het zuiden van Utrecht zijn we er het snelst. Maar ook voor een rit naar de andere kant van het land kun je ons bellen." }),
       mapSection({ title: "Alle plaatsen op een rij." }),
       boardSection({ title: "Van Culemborg naar…", lede: "Ongeveer zo lang ben je onderweg, zonder file.", rows, from: "Culemborg" }),
       prose(`<div class="prose-cols">
@@ -257,7 +257,7 @@ function business() {
       prose(`<div class="prose-cols">
   <h2 class="h2">Eén nummer voor al je ritten.</h2>
   <div>
-    <p>Voor bedrijven in Culemborg en omgeving is DagDag een vaste taxi om op terug te vallen. Voor een losse rit, of met vaste afspraken.</p>
+    <p>Voor bedrijven in Culemborg en omgeving is DagDag een vaste taxi om op terug te vallen. Voor een losse rit of met vaste afspraken, en naar elke bestemming in Nederland.</p>
     <ul class="plain">
       <li><strong>Gasten ophalen.</strong> Van station Culemborg, Utrecht Centraal of Schiphol naar jullie bedrijf.</li>
       <li><strong>Medewerkers.</strong> Na een late dienst naar huis, of vroeg naar het vliegveld voor een zakenreis.</li>
@@ -298,8 +298,8 @@ function contact() {
   </div>
   <div class="contact-card">
     <p class="label">Werkgebied</p>
-    <p class="contact-mid">Culemborg e.o.</p>
-    <p><a href="/werkgebied">Bekijk alle plaatsen</a></p>
+    <p class="contact-mid">Heel Nederland</p>
+    <p>Thuisbasis Culemborg. <a href="/werkgebied">Bekijk het werkgebied</a></p>
   </div>
   <div class="contact-card contact-review">
     <p class="label">Met ons meegereden?</p>

@@ -267,5 +267,5 @@ export const HOME_FAQ = [
   ["Kan ik ook vooruit reserveren?", "Ja. Voor een vroege vlucht of een vaste afspraak kun je dagen of weken van tevoren een rit vastleggen. Bellen of appen, allebei goed."],
   ["Rijden jullie ook ’s nachts?", "Ja. DagDag rijdt dag en nacht, ook in het weekend. Bel gewoon, hoe laat het ook is."],
   ["Wat kost een rit?", "Dat hangt af van de afstand en het tijdstip. Vraag het gerust als je belt of appt: je hoort vooraf waar je aan toe bent."],
-  ["Rijden jullie ook buiten Culemborg?", "Ja. We halen op in Culemborg en de hele omgeving, van Houten tot Tiel en van Vianen tot Zaltbommel. Naar de luchthavens rijden we door het hele land."],
+  ["Rijden jullie ook buiten Culemborg?", "Ja, door heel Nederland. Onze thuisbasis is Culemborg, dus in de regio van Houten tot Tiel en van Vianen tot Zaltbommel zijn we er het snelst. Maar ook een rit naar Amsterdam, Groningen of Maastricht is geen probleem."],
 ];
