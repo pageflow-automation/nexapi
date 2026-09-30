@@ -3,6 +3,7 @@ import { esc, tel, wa, icon, waIcon, logo, mark, ctas, board, destRows, faq, min
 import { heroHome, heroSub, ticker, services, story, mapSection, steps, saveNumber, ctaBand, prose, nearby, tag } from "./layout.mjs";
 
 const PHONE = SITE.phoneDisplay;
+const dur = (m) => (m < 60 ? `${m} minuten` : `${Math.floor(m / 60)} uur${m % 60 ? ` en ${m % 60} minuten` : ""}`);
 const townRow = (t, from = HOME) => ({ name: `Taxi ${t.name}`, short: t.name.toUpperCase().replace("WIJK BIJ DUURSTEDE", "WIJK B DUURST"), min: minutes(from, t), href: `/${t.slug}` });
 const DEST_LINK = { SCHIPHOL: "/taxi-schiphol", "EINDHOVEN AP": "/luchthavenvervoer", "ROTTERDAM AP": "/luchthavenvervoer", "ZH TIEL": "/taxi-ziekenhuis", ANTONIUS: "/taxi-ziekenhuis", "UMC UTRECHT": "/taxi-ziekenhuis" };
 const GENERIC_FAQ = [HOME_FAQ[0], HOME_FAQ[1], HOME_FAQ[3]];
@@ -34,7 +35,7 @@ function home() {
   return {
     path: "/", og: "home",
     title: `Taxi Culemborg – DagDag Taxi | Dag & nacht | ${PHONE}`,
-    description: `Taxi nodig in Culemborg? DagDag Taxi rijdt dag en nacht naar station, ziekenhuis, Schiphol en door heel Nederland. Bel ${PHONE}.`,
+    description: `Taxi nodig in Culemborg? DagDag Taxi rijdt dag en nacht naar station, ziekenhuis, Schiphol en overal heen, ook buitenland. Bel ${PHONE}.`,
     bodyClass: "is-home",
     ld: [faqLd(HOME_FAQ), serviceLd({ name: "Taxi Culemborg", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/", description: "Taxiritten in Culemborg en omgeving, dag en nacht." })],
     body: [
@@ -113,11 +114,11 @@ function werkgebied() {
   const rows = TOWNS.filter((t) => !t.village).sort((a, b) => minutes(HOME, a) - minutes(HOME, b)).map((t) => townRow(t));
   return {
     path: "/werkgebied", og: "werkgebied",
-    title: "Werkgebied: vanuit Culemborg door heel NL | DagDag Taxi",
-    description: `DagDag Taxi rijdt door heel Nederland, vanuit Culemborg. Snel ter plaatse in Geldermalsen, Houten, Vianen, Tiel, Buren en meer. Bel ${PHONE}.`,
+    title: "Werkgebied: vanuit Culemborg overal heen | DagDag Taxi",
+    description: `DagDag Taxi rijdt overal heen, ook naar het buitenland. Snel ter plaatse in Geldermalsen, Houten, Vianen, Tiel, Buren en meer. Bel ${PHONE}.`,
     ld: [crumbsLd([["Home", "/"], ["Werkgebied", "/werkgebied"]])],
     body: [
-      heroSub({ tagText: "Werkgebied", title: "Waar we <em>rijden.</em>", lede: "Door heel Nederland. Onze thuisbasis is Culemborg, dus in de Betuwe, de Vijfheerenlanden en het zuiden van Utrecht zijn we er het snelst. Maar ook voor een rit naar de andere kant van het land kun je ons bellen." }),
+      heroSub({ tagText: "Werkgebied", title: "Waar we <em>rijden.</em>", lede: "Overal heen: door heel Nederland en naar het buitenland. Onze thuisbasis is Culemborg, dus in de Betuwe, de Vijfheerenlanden en het zuiden van Utrecht zijn we er het snelst. Maar ook voor een rit naar de andere kant van het land kun je ons bellen." }),
       mapSection({ title: "Alle plaatsen op een rij." }),
       boardSection({ title: "Van Culemborg naar…", lede: "Ongeveer zo lang ben je onderweg, zonder file.", rows, from: "Culemborg" }),
       prose(`<div class="prose-cols">
@@ -137,20 +138,20 @@ ${TOWNS.filter((t) => t.village).map((t) => `      <li><a href="/${t.slug}">Taxi
 
 // ---------------- Luchthavens ----------------
 function airports() {
-  const rows = destRows(HOME, ["schiphol", "eindhoven-ap", "rotterdam-ap"]).map((d) => ({ ...d, href: d.short === "SCHIPHOL" ? "/taxi-schiphol" : undefined }));
+  const rows = destRows(HOME, ["schiphol", "eindhoven-ap", "rotterdam-ap", "weeze-ap", "dus-ap", "bru-ap"]).map((d) => ({ ...d, href: d.short === "SCHIPHOL" ? "/taxi-schiphol" : undefined }));
   const waText = "Hallo DagDag Taxi, ik wil graag een taxi naar het vliegveld.\n\nOphalen: \nLuchthaven: \nDatum en vertrektijd vlucht: \nPersonen en koffers: ";
   const faqs = [
     ["Hoe ver van tevoren moet ik een luchthavenrit boeken?", "Het liefst een paar dagen van tevoren, zeker voor een vroege vlucht. Maar bel ook gerust als het morgen al is: vaak kan het nog."],
     ["Halen jullie me ook op na mijn vakantie?", "Ja. Geef je vluchtnummer door, dan stemmen we het ophalen af op je landing."],
-    ["Rijden jullie ook naar Düsseldorf of Brussel?", "Vraag het ons. Bel of app met je bestemming en tijd, dan hoor je of het past."],
+    ["Rijden jullie ook naar Düsseldorf of Brussel?", "Ja. Düsseldorf, Weeze, Keulen, Brussel, Antwerpen of Charleroi: we rijden overal heen. Geef je vluchttijd door, dan plannen we de rit met ruim marge."],
   ];
   return {
     path: "/luchthavenvervoer", og: "luchthavenvervoer",
     title: "Luchthavenvervoer vanuit Culemborg | DagDag Taxi",
-    description: `Taxi van Culemborg naar Schiphol, Eindhoven Airport of Rotterdam The Hague Airport. Op tijd, zonder parkeergedoe. Bel of app ${PHONE}.`,
-    ld: [serviceLd({ name: "Luchthavenvervoer vanuit Culemborg", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/luchthavenvervoer", description: "Taxi naar Schiphol, Eindhoven Airport en Rotterdam The Hague Airport." }), crumbsLd([["Home", "/"], ["Luchthavenvervoer", "/luchthavenvervoer"]]), faqLd(faqs)],
+    description: `Taxi van Culemborg naar Schiphol, Eindhoven, Rotterdam, Düsseldorf, Weeze of Brussel. Op tijd, zonder parkeergedoe. Bel of app ${PHONE}.`,
+    ld: [serviceLd({ name: "Luchthavenvervoer vanuit Culemborg", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/luchthavenvervoer", description: "Taxi naar Schiphol, Eindhoven Airport, Rotterdam The Hague Airport, Düsseldorf Airport, Weeze Airport en Brussels Airport." }), crumbsLd([["Home", "/"], ["Luchthavenvervoer", "/luchthavenvervoer"]]), faqLd(faqs)],
     body: [
-      heroSub({ tagText: "Schiphol · Eindhoven · Rotterdam", title: "Naar het <em>vliegveld.</em>", lede: "Zonder parkeergedoe, zonder sjouwen op het station. We halen je thuis op en zetten je af bij de vertrekhal.", waText, aside: board(rows, { from: "Culemborg" }) }),
+      heroSub({ tagText: "Nederland · Duitsland · België", title: "Naar het <em>vliegveld.</em>", lede: "Zonder parkeergedoe, zonder sjouwen op het station. We halen je thuis op en zetten je af bij de vertrekhal.", waText, aside: board(rows, { from: "Culemborg" }) }),
       prose(`<div class="prose-cols">
   <h2 class="h2">Zo plannen we je rit.</h2>
   <div>
@@ -165,6 +166,11 @@ function airports() {
     <p>Via de A2 ben je in ongeveer ${minutes(HOME, DEST["eindhoven-ap"])} minuten bij Eindhoven Airport. Handig voor vakantievluchten naar het zuiden.</p>
     <h3>Rotterdam The Hague Airport</h3>
     <p>Klein en overzichtelijk. Ongeveer ${minutes(HOME, DEST["rotterdam-ap"])} minuten rijden vanaf Culemborg.</p>
+    <h3>Düsseldorf Airport en Weeze</h3>
+    <p>Vlieg je vanuit Duitsland? Naar Weeze ben je ongeveer ${dur(minutes(HOME, DEST["weeze-ap"]))} onderweg, naar Düsseldorf ongeveer ${dur(minutes(HOME, DEST["dus-ap"]))}. We rijden je tot aan de vertrekhal.</p>
+    <h3>Brussels Airport</h3>
+    <p>Ook naar Brussel (Zaventem), Charleroi of Antwerpen rijden we je. Reken voor Brussels Airport op ongeveer ${dur(minutes(HOME, DEST["bru-ap"]))} zonder file.</p>
+    <p>Andere bestemming, in Nederland of daarbuiten? Bel of app: we rijden overal heen.</p>
   </div>
 </div>`),
       faq(faqs, { title: "Vragen over luchthaven\u00advervoer" }), // soft hyphen: breaks as luchthaven-vervoer on phones
@@ -257,7 +263,7 @@ function business() {
       prose(`<div class="prose-cols">
   <h2 class="h2">Eén nummer voor al je ritten.</h2>
   <div>
-    <p>Voor bedrijven in Culemborg en omgeving is DagDag een vaste taxi om op terug te vallen. Voor een losse rit of met vaste afspraken, en naar elke bestemming in Nederland.</p>
+    <p>Voor bedrijven in Culemborg en omgeving is DagDag een vaste taxi om op terug te vallen. Voor een losse rit of met vaste afspraken, en naar elke bestemming in Nederland of daarbuiten.</p>
     <ul class="plain">
       <li><strong>Gasten ophalen.</strong> Van station Culemborg, Utrecht Centraal of Schiphol naar jullie bedrijf.</li>
       <li><strong>Medewerkers.</strong> Na een late dienst naar huis, of vroeg naar het vliegveld voor een zakenreis.</li>
@@ -298,7 +304,7 @@ function contact() {
   </div>
   <div class="contact-card">
     <p class="label">Werkgebied</p>
-    <p class="contact-mid">Heel Nederland</p>
+    <p class="contact-mid">Overal heen</p>
     <p>Thuisbasis Culemborg. <a href="/werkgebied">Bekijk het werkgebied</a></p>
   </div>
   <div class="contact-card contact-review">

@@ -55,7 +55,7 @@ fs.writeFileSync(path.join(OUT, "llms.txt"), `# ${SITE.name}
 
 > Taxibedrijf in Culemborg (Gelderland). Dag en nacht bereikbaar op ${SITE.phoneDisplay} (bellen of WhatsApp).
 
-- Werkgebied: heel Nederland, thuisbasis Culemborg. Eigen pagina's voor: ${indexable.filter((p) => p.path.startsWith("/taxi-") && !["/taxi-schiphol", "/taxi-ziekenhuis"].includes(p.path)).map((p) => p.path.replace("/taxi-", "").replace(/-/g, " ")).join(", ")}.
+- Werkgebied: overal heen (heel Nederland en buitenland), thuisbasis Culemborg. Eigen pagina's voor: ${indexable.filter((p) => p.path.startsWith("/taxi-") && !["/taxi-schiphol", "/taxi-ziekenhuis"].includes(p.path)).map((p) => p.path.replace("/taxi-", "").replace(/-/g, " ")).join(", ")}.
 - Ritten: stations, ziekenhuizen (Tiel, Nieuwegein, Utrecht), luchthavens (Schiphol, Eindhoven, Rotterdam), zakelijk vervoer, nachtritten.
 - Telefoon: ${SITE.phoneE164}
 - WhatsApp: https://wa.me/${SITE.whatsapp}
@@ -68,7 +68,7 @@ ${indexable.map((p) => `- [${p.title}](${SITE.url}${p.path === "/" ? "/" : p.pat
 fs.writeFileSync(path.join(OUT, "site.webmanifest"), JSON.stringify({
   name: "DagDag Taxi Culemborg",
   short_name: "DagDag Taxi",
-  description: "Taxi uit Culemborg, door heel Nederland. Dag en nacht.",
+  description: "Taxi uit Culemborg. Overal heen, dag en nacht.",
   start_url: "/",
   display: "standalone",
   background_color: "#F3EFE6",
@@ -88,7 +88,7 @@ fs.writeFileSync(path.join(OUT, "dagdag-taxi.vcf"), [
   `TEL;TYPE=CELL,VOICE:${SITE.phoneE164}`,
   `URL:${SITE.url}/`,
   "ADR;TYPE=WORK:;;;Culemborg;Gelderland;;Nederland",
-  "NOTE:Taxi uit Culemborg\\, door heel Nederland. Bellen of WhatsApp\\, dag en nacht.",
+  "NOTE:Taxi uit Culemborg\\, overal heen. Bellen of WhatsApp\\, dag en nacht.",
   "END:VCARD", "",
 ].join("\r\n"));
 

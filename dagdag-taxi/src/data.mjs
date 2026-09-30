@@ -33,6 +33,9 @@ export const DEST = {
   "schiphol": { name: "Schiphol", short: "SCHIPHOL", lat: 52.3105, lng: 4.7683 },
   "eindhoven-ap": { name: "Eindhoven Airport", short: "EINDHOVEN AP", lat: 51.4500, lng: 5.3745 },
   "rotterdam-ap": { name: "Rotterdam The Hague Airport", short: "ROTTERDAM AP", lat: 51.9569, lng: 4.4372 },
+  "weeze-ap": { name: "Weeze Airport", short: "WEEZE AP", lat: 51.6024, lng: 6.1422 },
+  "dus-ap": { name: "Düsseldorf Airport", short: "DUSSELDORF", lat: 51.2895, lng: 6.7668 },
+  "bru-ap": { name: "Brussels Airport", short: "BRUSSEL AP", lat: 50.9014, lng: 4.4844 },
 };
 
 // Towns with their own landing page. Copy is written per town; no templated filler.
@@ -267,5 +270,5 @@ export const HOME_FAQ = [
   ["Kan ik ook vooruit reserveren?", "Ja. Voor een vroege vlucht of een vaste afspraak kun je dagen of weken van tevoren een rit vastleggen. Bellen of appen, allebei goed."],
   ["Rijden jullie ook ’s nachts?", "Ja. DagDag rijdt dag en nacht, ook in het weekend. Bel gewoon, hoe laat het ook is."],
   ["Wat kost een rit?", "Dat hangt af van de afstand en het tijdstip. Vraag het gerust als je belt of appt: je hoort vooraf waar je aan toe bent."],
-  ["Rijden jullie ook buiten Culemborg?", "Ja, door heel Nederland. Onze thuisbasis is Culemborg, dus in de regio van Houten tot Tiel en van Vianen tot Zaltbommel zijn we er het snelst. Maar ook een rit naar Amsterdam, Groningen of Maastricht is geen probleem."],
+  ["Rijden jullie ook buiten Culemborg?", "Ja, we rijden overal heen: door heel Nederland en naar het buitenland, zoals Düsseldorf, Keulen, Brussel of Antwerpen. Onze thuisbasis is Culemborg, dus in de regio van Houten tot Tiel en van Vianen tot Zaltbommel zijn we er het snelst."],
 ];

@@ -17,7 +17,7 @@ export function km(a, b) {
 // Conservative door-to-door estimate without traffic. Rounded to 5 minutes.
 export function minutes(a, b) {
   const road = km(a, b) * 1.3;
-  const speed = road < 12 ? 38 : road < 35 ? 55 : 80;
+  const speed = road < 12 ? 38 : road < 35 ? 55 : road < 90 ? 80 : 95;
   const m = (road / speed) * 60 + 3;
   return Math.max(5, Math.round(m / 5) * 5);
 }
@@ -169,14 +169,14 @@ export function businessLd() {
     "@type": "LocalBusiness",
     "@id": `${SITE.url}/#business`,
     name: SITE.name,
-    description: "Taxibedrijf uit Culemborg. Ritten door heel Nederland: in de regio, naar ziekenhuizen, stations en luchthavens. Dag en nacht bereikbaar.",
+    description: "Taxibedrijf uit Culemborg. We rijden overal heen: in de regio, door heel Nederland en naar het buitenland, naar ziekenhuizen, stations en luchthavens. Dag en nacht bereikbaar.",
     url: `${SITE.url}/`,
     telephone: SITE.phoneE164,
     logo: `${SITE.url}/img/logo-512.png`,
     image: `${SITE.url}/og/home.png`,
     address: { "@type": "PostalAddress", addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: SITE.country },
     geo: { "@type": "GeoCoordinates", latitude: SITE.geo.lat, longitude: SITE.geo.lng },
-    areaServed: [{ "@type": "Country", name: "Nederland" }, ...[SITE.city, ...TOWNS.map((t) => t.name)].map((n) => ({ "@type": "City", name: n }))],
+    areaServed: [{ "@type": "Country", name: "Nederland" }, { "@type": "Country", name: "België" }, { "@type": "Country", name: "Duitsland" }, ...[SITE.city, ...TOWNS.map((t) => t.name)].map((n) => ({ "@type": "City", name: n }))],
     openingHoursSpecification: [{
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
