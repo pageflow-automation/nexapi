@@ -77,6 +77,18 @@
     $$("main .ctas").forEach((g) => cio.observe(g));
   }
 
+  // ---------- Back to top ----------
+  const totop = $("[data-totop]");
+  if (totop) {
+    const onTop = () => totop.classList.toggle("is-shown", scrollY > innerHeight * 1.2);
+    onTop();
+    addEventListener("scroll", onTop, { passive: true });
+    totop.addEventListener("click", () => {
+      scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      $(".hdr-logo").focus({ preventScroll: true });
+    });
+  }
+
   // ---------- Live clock (Culemborg time) ----------
   const clock = $("[data-clock]");
   if (clock) {

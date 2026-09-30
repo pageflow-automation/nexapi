@@ -529,6 +529,23 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
 .ftr-muted { color: var(--night-muted); font-size: 16px; }
 .ftr-small { margin-top: 56px; font-size: 15px; color: var(--night-muted); }
 
+/* ---------- Back to top ---------- */
+.totop {
+  position: fixed; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 95;
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 52px; padding: 0 18px 0 14px;
+  background: var(--ink); color: var(--paper);
+  border: 2px solid var(--yellow); border-radius: 999px;
+  font: 700 16px/1 var(--sans); cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity .3s, transform .4s var(--ease), visibility 0s .4s, bottom .35s var(--ease);
+}
+.totop .i { color: var(--yellow); width: 22px; height: 22px; stroke-width: 2.5; }
+.totop.is-shown { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.totop:hover { background: #000; }
+.menu-open .totop { opacity: 0; visibility: hidden; }
+
 /* ---------- Mobile call bar ---------- */
 .callbar { display: none; }
 
@@ -627,6 +644,8 @@ a.map-town:hover .map-label, a.map-town.is-hot .map-label { text-decoration: und
     transition: transform .35s var(--ease);
   }
   .menu-open .callbar, .ctas-in-view .callbar { transform: translateY(110%); }
+  .totop { bottom: calc(88px + env(safe-area-inset-bottom)); }
+  .ctas-in-view .totop { bottom: calc(20px + env(safe-area-inset-bottom)); }
   .callbar-btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 60px; border-radius: 14px; font-weight: 800; font-size: 19px; text-decoration: none; }
   .callbar-call { background: var(--yellow); color: var(--ink); }
   .callbar-wa { background: #fff; color: var(--ink); }

@@ -61,6 +61,7 @@ ${body}
 </main>
 ${footer()}
 ${callBar()}
+<button class="totop" type="button" data-totop aria-label="Terug naar boven">${icon("up")}<span>Naar boven</span></button>
 <script src="${assets.js}" defer></script>
 </body>
 </html>
@@ -100,8 +101,10 @@ function footer() {
     <div>
       <p class="label">Ritten</p>
       <ul>
-        <li><a href="/luchthavenvervoer">Luchthavenvervoer</a></li>
+        <li><a href="/taxi-naar-huis">Taxi naar huis</a></li>
+        <li><a href="/taxi-station">Taxi naar het station</a></li>
         <li><a href="/taxi-schiphol">Taxi naar Schiphol</a></li>
+        <li><a href="/luchthavenvervoer">Düsseldorf, Brussel &amp; andere luchthavens</a></li>
         <li><a href="/taxi-ziekenhuis">Taxi naar het ziekenhuis</a></li>
         <li><a href="/zakelijk-vervoer">Zakelijk vervoer</a></li>
         <li><a href="/contact">Contact &amp; nummer opslaan</a></li>

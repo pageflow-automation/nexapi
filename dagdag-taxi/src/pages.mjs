@@ -457,4 +457,82 @@ function notFound() {
   };
 }
 
-export const PAGES = [home(), ...TOWNS.map(town), werkgebied(), airports(), schiphol(), hospital(), business(), contact(), brand(), notFound()];
+// ---------------- Naar huis / nachttaxi ----------------
+function home2() {
+  const toHome = (id) => ({ ...DEST[id], name: `${DEST[id].name} naar Culemborg`, min: minutes(DEST[id], HOME) });
+  const rows = [toHome("utrecht-cs"), toHome("den-bosch"), toHome("antonius"), toHome("rivierenland"), toHome("schiphol")];
+  const waText = "Hallo DagDag Taxi, ik wil graag naar huis.\n\nOphalen: \nNaar: \nWanneer: nu / om ";
+  const faqs = [
+    ["Kan ik ook midden in de nacht bellen?", "Ja. DagDag rijdt dag en nacht, ook in het weekend. Bel gewoon, hoe laat het ook is."],
+    ["Hoe weten jullie precies waar ik sta?", "Deel je locatie via WhatsApp: tik in het gesprek op het plusje of paperclipje en kies ‘Locatie’. Dan rijden we precies naar je toe."],
+    ["Halen jullie me ook op buiten de regio?", "Ja, we rijden overal heen. Van een feest in Utrecht, een concert in Amsterdam of een late vlucht op Schiphol: bel of app, dan hoor je hoe laat we er zijn."],
+    HOME_FAQ[3],
+  ];
+  return {
+    path: "/taxi-naar-huis", og: "taxi-naar-huis",
+    title: `Taxi naar huis, ook ’s nachts | DagDag Taxi | ${PHONE}`,
+    description: `Taxi naar huis na een avond uit, de late dienst of de laatste trein. Dag en nacht, vanuit Culemborg overal heen. Bel of app ${PHONE}.`,
+    ld: [serviceLd({ name: "Taxi naar huis en nachtritten", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/taxi-naar-huis", description: "Taxiritten naar huis, dag en nacht." }), crumbsLd([["Home", "/"], ["Taxi naar huis", "/taxi-naar-huis"]]), faqLd(faqs)],
+    body: [
+      heroSub({ tagText: "Dag en nacht", title: "Taxi naar <em>huis.</em>", lede: "Na het feest, na de late dienst, na de laatste trein. Bel of app, dan brengen we je veilig thuis.", waText, aside: board(rows, { from: "onderweg", caption: "Naar Culemborg" }) }),
+      prose(`<div class="prose-cols">
+  <h2 class="h2">Veilig thuis, hoe laat het ook is.</h2>
+  <div>
+    <p>De laatste trein is weg, de bus rijdt niet meer, of je hebt gewoon geen zin om te fietsen. Bel of app DagDag, dan halen we je op en zetten we je voor de deur af.</p>
+    <ul class="plain">
+      <li><strong>Na een avond uit</strong> in Utrecht, Den Bosch of dichter bij huis.</li>
+      <li><strong>Na de late dienst</strong> in het ziekenhuis, de fabriek of de horeca.</li>
+      <li><strong>Laatste trein gemist</strong> of gestrand op een station? We halen je op.</li>
+      <li><strong>Terug van vakantie</strong>: vanaf Schiphol of een ander vliegveld in één keer naar huis.</li>
+      <li><strong>Na een bezoek</strong> aan familie of vrienden, als je liever niet meer zelf rijdt.</li>
+    </ul>
+    <h3>Zo gaat het het snelst</h3>
+    <ol class="howto">
+      <li>Bel <a href="${tel}">${PHONE}</a> of stuur een <a href="${esc(wa(waText))}" target="_blank" rel="noopener">WhatsApp</a>.</li>
+      <li>Deel je locatie in WhatsApp, dan vinden we je meteen.</li>
+      <li>Je hoort hoe laat we er zijn. Wacht op een veilige, verlichte plek.</li>
+    </ol>
+  </div>
+</div>`),
+      faq(faqs, { title: "Vragen over een taxi naar huis" }),
+      ctaBand({ title: "Naar huis? Bel of app.", waText }),
+    ].join("\n"),
+  };
+}
+
+// ---------------- Station ----------------
+function station() {
+  const rows = destRows(HOME, ["station-culemborg", "station-geldermalsen", "station-houten", "station-tiel", "utrecht-cs", "den-bosch"]);
+  const waText = "Hallo DagDag Taxi, ik wil graag een taxi van of naar het station.\n\nOphalen: \nNaar: \nTrein / tijd: ";
+  const faqs = [
+    ["Kunnen jullie me ophalen als mijn trein vertraging heeft?", "Ja. App ons even als je trein later is, dan passen we de ophaaltijd aan."],
+    ["Brengen jullie me ook naar Utrecht Centraal voor een vroege trein?", "Ja. Geef je vertrektijd door, dan zorgen we dat je ruim op tijd bent. Ook heel vroeg in de ochtend."],
+    ["Waar staan jullie bij het station?", "Dat spreken we af als je belt of appt. Meestal bij de ingang of de taxistandplaats, zodat je ons meteen ziet."],
+  ];
+  return {
+    path: "/taxi-station", og: "taxi-station",
+    title: "Taxi naar het station – Culemborg e.o. | DagDag Taxi",
+    description: `Taxi van of naar station Culemborg, Geldermalsen, Houten, Tiel of Utrecht Centraal. Op tijd voor je trein, of thuis na de laatste. Bel ${PHONE}.`,
+    ld: [serviceLd({ name: "Taxi van en naar het station", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/taxi-station", description: "Taxiritten van en naar treinstations in de regio." }), crumbsLd([["Home", "/"], ["Taxi naar het station", "/taxi-station"]]), faqLd(faqs)],
+    body: [
+      heroSub({ tagText: "Van en naar de trein", title: "Naar het <em>station.</em>", lede: "Op tijd voor je trein, of van het station in één keer naar huis. Met koffers, met boodschappen, of gewoon omdat het regent.", waText, aside: board(rows, { from: "Culemborg" }) }),
+      prose(`<div class="prose-cols">
+  <h2 class="h2">De trein in, de trein uit.</h2>
+  <div>
+    <p>Of je nu naar station Culemborg moet voor de trein naar je werk, of vanaf Utrecht Centraal terug wilt naar huis: DagDag rijdt je erheen of haalt je op.</p>
+    <p>Moet je naar een station verder weg, zoals Utrecht Centraal of Den Bosch, voor een betere verbinding of een nachttrein? Ook dat kan. En komt je trein laat aan, dan wachten we op je.</p>
+    <h3>Zo bestel je</h3>
+    <ol class="howto">
+      <li>Bel <a href="${tel}">${PHONE}</a> of stuur een <a href="${esc(wa(waText))}" target="_blank" rel="noopener">WhatsApp</a>.</li>
+      <li>Zeg van welk station naar waar, en hoe laat je trein gaat of aankomt.</li>
+      <li>We spreken af waar we je ophalen of afzetten.</li>
+    </ol>
+  </div>
+</div>`),
+      faq(faqs, { title: "Vragen over een taxi naar het station" }),
+      ctaBand({ title: "Trein te pakken? Bel of app.", waText }),
+    ].join("\n"),
+  };
+}
+
+export const PAGES = [home(), ...TOWNS.map(town), werkgebied(), home2(), station(), airports(), schiphol(), hospital(), business(), contact(), brand(), notFound()];

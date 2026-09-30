@@ -25,6 +25,9 @@ export const SITE = {
 // Places we drive to often. Coordinates are used for the map and travel-time estimates.
 export const DEST = {
   "station-culemborg": { name: "Station Culemborg", short: "STATION", lat: 51.9545, lng: 5.2310 },
+  "station-geldermalsen": { name: "Station Geldermalsen", short: "GELDERMALSEN", lat: 51.8837, lng: 5.2708 },
+  "station-tiel": { name: "Station Tiel", short: "STATION TIEL", lat: 51.8876, lng: 5.4275 },
+  "station-houten": { name: "Station Houten", short: "HOUTEN", lat: 52.0343, lng: 5.1683 },
   "utrecht-cs": { name: "Utrecht Centraal", short: "UTRECHT CS", lat: 52.0894, lng: 5.1100 },
   "umc": { name: "UMC Utrecht", short: "UMC UTRECHT", lat: 52.0870, lng: 5.1790 },
   "antonius": { name: "St. Antonius Ziekenhuis, Nieuwegein", short: "ANTONIUS", lat: 52.0367, lng: 5.0945 },
@@ -258,11 +261,11 @@ export const DAY = [
 ];
 
 export const SERVICES = [
-  { icon: "train", title: "Station & stad", text: "Van de trein naar je voordeur, van de Markt naar je wijk. Geen rit is te kort.", href: "/werkgebied" },
+  { icon: "train", title: "Station & stad", text: "Van de trein naar je voordeur, van de Markt naar je wijk. Geen rit is te kort.", href: "/taxi-station" },
   { icon: "plane", title: "Luchthavens", text: "Schiphol, Eindhoven, Rotterdam. We plannen de ophaaltijd met ruimte voor file en helpen met de koffers.", href: "/luchthavenvervoer" },
   { icon: "cross", title: "Ziekenhuis & afspraken", text: "Naar Tiel, Nieuwegein of Utrecht. Rustig instappen, en als je wilt halen we je ook weer op.", href: "/taxi-ziekenhuis" },
   { icon: "case", title: "Zakelijk", text: "Voor medewerkers, klanten en gasten. Vaste afspraken, één aanspreekpunt.", href: "/zakelijk-vervoer" },
-  { icon: "moon", title: "’s Nachts", text: "Na het feest, na de late dienst, na de laatste trein. Ook dan kun je bellen.", href: "/contact" },
+  { icon: "moon", title: "’s Nachts", text: "Na het feest, na de late dienst, na de laatste trein. Ook dan kun je bellen.", href: "/taxi-naar-huis" },
 ];
 
 export const HOME_FAQ = [

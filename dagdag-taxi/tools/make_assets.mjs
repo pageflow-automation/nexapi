@@ -70,6 +70,8 @@ const OG = {
   "taxi-ziekenhuis": ["Tiel · Nieuwegein · Utrecht", "Naar het", "<em>ziekenhuis.</em>"],
   "zakelijk-vervoer": ["Voor bedrijven", "Zakelijk", "<em>vervoer.</em>"],
   contact: ["Contact", "Bel of", "<em>app.</em>"],
+  "taxi-naar-huis": ["Dag en nacht", "Taxi naar", "<em>huis.</em>"],
+  "taxi-station": ["Van en naar de trein", "Naar het", "<em>station.</em>"],
   ...Object.fromEntries(TOWNS.map((t) => [t.slug, [`${minutes(HOME, t)} min vanaf Culemborg`, "Taxi", `<em>${t.name}.</em>`]])),
 };
 fs.mkdirSync(path.join(PUB, "og"), { recursive: true });
