@@ -29,7 +29,7 @@ for (const f of pages) {
   const noindex = /<meta name="robots" content="noindex/.test(html);
   if (!noindex) indexable.push(p);
 
-  if (!/<html lang="nl">/.test(html)) err(f, "missing lang=nl");
+  if (!/<html lang="nl"/.test(html)) err(f, "missing lang=nl");
   const title = decode((html.match(/<title>([^<]*)<\/title>/) || [])[1] || "");
   if (!title) err(f, "missing <title>");
   else if (title.length > 65) err(f, `title too long (${title.length}): ${title}`);

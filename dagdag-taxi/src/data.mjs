@@ -39,6 +39,12 @@ export const DEST = {
   "weeze-ap": { name: "Weeze Airport", short: "WEEZE AP", lat: 51.6024, lng: 6.1422 },
   "dus-ap": { name: "Düsseldorf Airport", short: "DUSSELDORF", lat: 51.2895, lng: 6.7668 },
   "bru-ap": { name: "Brussels Airport", short: "BRUSSEL AP", lat: 50.9014, lng: 4.4844 },
+  "amsterdam": { name: "Amsterdam", short: "AMSTERDAM", lat: 52.3791, lng: 4.9003 },
+  "rotterdam": { name: "Rotterdam", short: "ROTTERDAM", lat: 51.9244, lng: 4.4690 },
+  "den-haag": { name: "Den Haag", short: "DEN HAAG", lat: 52.0808, lng: 4.3247 },
+  "groningen": { name: "Groningen", short: "GRONINGEN", lat: 53.2107, lng: 6.5646 },
+  "maastricht": { name: "Maastricht", short: "MAASTRICHT", lat: 50.8497, lng: 5.7057 },
+  "keulen": { name: "Keulen", short: "KEULEN", lat: 50.9430, lng: 6.9589 },
 };
 
 // Towns with their own landing page. Copy is written per town; no templated filler.

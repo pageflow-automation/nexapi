@@ -535,4 +535,50 @@ function station() {
   };
 }
 
-export const PAGES = [home(), ...TOWNS.map(town), werkgebied(), home2(), station(), airports(), schiphol(), hospital(), business(), contact(), brand(), notFound()];
+// ---------------- Korte en lange ritten ----------------
+function shortLong() {
+  const rows = destRows(HOME, ["amsterdam", "rotterdam", "den-haag", "maastricht", "groningen", "keulen"]);
+  const waText = "Hallo DagDag Taxi, ik wil graag een taxi.\n\nOphalen: \nNaar: \nWanneer: \nPersonen en bagage: ";
+  const faqs = [
+    ["Is een rit ooit te kort?", "Nee. Ook van het station naar huis of van de supermarkt naar je voordeur rijden we je graag."],
+    ["Rijden jullie ook naar de andere kant van het land?", "Ja. Amsterdam, Groningen, Maastricht of Zeeland: we rijden overal heen, ook naar het buitenland."],
+    ["Kunnen jullie ook wachten en me weer terugbrengen?", "Ja. Voor een afspraak, een bezoek of een evenement spreken we een terugrit af. Zeg het als je belt."],
+    HOME_FAQ[3],
+  ];
+  return {
+    path: "/korte-en-lange-ritten", og: "korte-en-lange-ritten",
+    title: "Korte en lange taxiritten vanuit Culemborg | DagDag Taxi",
+    description: `Van de Markt naar huis of van Culemborg naar Amsterdam, Maastricht of Keulen: DagDag Taxi rijdt korte én lange ritten. Bel of app ${PHONE}.`,
+    ld: [serviceLd({ name: "Korte en lange taxiritten", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/korte-en-lange-ritten", description: "Korte ritten in de regio en lange ritten door heel Nederland en naar het buitenland." }), crumbsLd([["Home", "/"], ["Korte en lange ritten", "/korte-en-lange-ritten"]]), faqLd(faqs)],
+    body: [
+      heroSub({ tagText: "Om de hoek of het land door", title: "Kort of <em>lang.</em>", lede: "Vijf minuten naar het station of drie uur naar de andere kant van het land: voor ons is elke rit welkom.", waText, aside: board(rows, { from: "Culemborg" }) }),
+      prose(`<div class="prose-cols" id="kort">
+  <h2 class="h2">Korte ritten.</h2>
+  <div>
+    <p>Geen rit is te kort. Van de Markt naar Terweijde, van de supermarkt naar huis met de boodschappen, of even naar de huisarts of het station. Juist voor korte ritten is een taxi handig als lopen of fietsen even niet gaat.</p>
+    <ul class="plain">
+      <li><strong>Binnen Culemborg</strong>: station, winkels, huisarts, familie.</li>
+      <li><strong>In de buurt</strong>: <a href="/taxi-beusichem">Beusichem</a>, <a href="/taxi-tricht">Tricht</a>, <a href="/taxi-geldermalsen">Geldermalsen</a>, <a href="/taxi-everdingen">Everdingen</a>.</li>
+      <li><strong>Heen en terug</strong>: we brengen je en halen je weer op.</li>
+    </ul>
+  </div>
+</div>`),
+      prose(`<div class="prose-cols" id="lang">
+  <h2 class="h2">Lange ritten.</h2>
+  <div>
+    <p>We rijden overal heen. Naar een verjaardag in Groningen, een afspraak in Den Haag, een concert in Amsterdam, of de haven van Rotterdam. En ook over de grens: Düsseldorf, Keulen, Brussel of Antwerpen.</p>
+    <ul class="plain">
+      <li><strong>Zonder overstappen</strong>: thuis instappen, op je bestemming uitstappen.</li>
+      <li><strong>Met bagage</strong>: koffers gaan gewoon mee. Reis je met een rolstoel of veel bagage? Zeg het even als je belt.</li>
+      <li><strong>Vooraf duidelijk</strong>: vraag gerust wat de rit kost, dan weet je waar je aan toe bent.</li>
+    </ul>
+    <p>Naar het vliegveld? Kijk bij <a href="/luchthavenvervoer">luchthavenvervoer</a> voor Schiphol, Eindhoven, Düsseldorf en Brussel.</p>
+  </div>
+</div>`),
+      faq(faqs, { title: "Vragen over korte en lange ritten" }),
+      ctaBand({ title: "Kort of lang? Bel of app.", waText }),
+    ].join("\n"),
+  };
+}
+
+export const PAGES = [home(), ...TOWNS.map(town), werkgebied(), home2(), station(), shortLong(), airports(), schiphol(), hospital(), business(), contact(), brand(), notFound()];

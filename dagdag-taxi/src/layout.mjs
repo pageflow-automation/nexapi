@@ -17,9 +17,10 @@ export function page({ path, title, description, h1Id = "top", body, ld = [], no
     ...ld,
   ] };
   return `<!doctype html>
-<html lang="nl">
+<html lang="nl" translate="no">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
@@ -101,6 +102,8 @@ function footer() {
     <div>
       <p class="label">Ritten</p>
       <ul>
+        <li><a href="/korte-en-lange-ritten#kort">Korte ritten</a></li>
+        <li><a href="/korte-en-lange-ritten#lang">Lange ritten, ook buitenland</a></li>
         <li><a href="/taxi-naar-huis">Taxi naar huis</a></li>
         <li><a href="/taxi-station">Taxi naar het station</a></li>
         <li><a href="/taxi-schiphol">Taxi naar Schiphol</a></li>
