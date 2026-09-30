@@ -537,7 +537,7 @@ function station() {
 
 // ---------------- Korte en lange ritten ----------------
 function shortLong() {
-  const rows = destRows(HOME, ["amsterdam", "rotterdam", "den-haag", "maastricht", "groningen", "keulen"]);
+  const rows = destRows(HOME, ["amsterdam", "rotterdam", "den-haag", "antwerpen", "dusseldorf", "maastricht", "brussel", "keulen", "groningen"]).sort((a, b) => a.min - b.min);
   const waText = "Hallo DagDag Taxi, ik wil graag een taxi.\n\nOphalen: \nNaar: \nWanneer: \nPersonen en bagage: ";
   const faqs = [
     ["Is een rit ooit te kort?", "Nee. Ook van het station naar huis of van de supermarkt naar je voordeur rijden we je graag."],
@@ -548,10 +548,10 @@ function shortLong() {
   return {
     path: "/korte-en-lange-ritten", og: "korte-en-lange-ritten",
     title: "Korte en lange taxiritten vanuit Culemborg | DagDag Taxi",
-    description: `Van de Markt naar huis of van Culemborg naar Amsterdam, Maastricht of Keulen: DagDag Taxi rijdt korte én lange ritten. Bel of app ${PHONE}.`,
+    description: `Van de Markt naar huis of naar Amsterdam, Antwerpen, Brussel of Düsseldorf: DagDag Taxi rijdt overal heen. Bel of app ${PHONE}.`,
     ld: [serviceLd({ name: "Korte en lange taxiritten", area: ["Culemborg", ...TOWNS.map((t) => t.name)], path: "/korte-en-lange-ritten", description: "Korte ritten in de regio en lange ritten door heel Nederland en naar het buitenland." }), crumbsLd([["Home", "/"], ["Korte en lange ritten", "/korte-en-lange-ritten"]]), faqLd(faqs)],
     body: [
-      heroSub({ tagText: "Om de hoek of het land door", title: "Kort of <em>lang.</em>", lede: "Vijf minuten naar het station of drie uur naar de andere kant van het land: voor ons is elke rit welkom.", waText, aside: board(rows, { from: "Culemborg" }) }),
+      heroSub({ tagText: "Overal heen · ook buitenland", title: "Kort of <em>lang.</em>", lede: "Vijf minuten naar het station, of naar Amsterdam, Antwerpen, Brussel of Düsseldorf. We rijden overal heen, in Nederland en daarbuiten.", waText, aside: board(rows, { from: "Culemborg" }) }),
       prose(`<div class="prose-cols" id="kort">
   <h2 class="h2">Korte ritten.</h2>
   <div>
@@ -566,7 +566,7 @@ function shortLong() {
       prose(`<div class="prose-cols" id="lang">
   <h2 class="h2">Lange ritten.</h2>
   <div>
-    <p>We rijden overal heen. Naar een verjaardag in Groningen, een afspraak in Den Haag, een concert in Amsterdam, of de haven van Rotterdam. En ook over de grens: Düsseldorf, Keulen, Brussel of Antwerpen.</p>
+    <p>We rijden overal heen. Naar een verjaardag in Groningen, een afspraak in Den Haag, een concert in Amsterdam, of de haven van Rotterdam. En net zo goed over de grens: Antwerpen, Brussel, Düsseldorf, Keulen of verder. We rijden overal heen.</p>
     <ul class="plain">
       <li><strong>Zonder overstappen</strong>: thuis instappen, op je bestemming uitstappen.</li>
       <li><strong>Met bagage</strong>: koffers gaan gewoon mee. Reis je met een rolstoel of veel bagage? Zeg het even als je belt.</li>

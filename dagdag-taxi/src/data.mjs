@@ -45,6 +45,9 @@ export const DEST = {
   "groningen": { name: "Groningen", short: "GRONINGEN", lat: 53.2107, lng: 6.5646 },
   "maastricht": { name: "Maastricht", short: "MAASTRICHT", lat: 50.8497, lng: 5.7057 },
   "keulen": { name: "Keulen", short: "KEULEN", lat: 50.9430, lng: 6.9589 },
+  "antwerpen": { name: "Antwerpen", short: "ANTWERPEN", lat: 51.2172, lng: 4.4211 },
+  "brussel": { name: "Brussel", short: "BRUSSEL", lat: 50.8467, lng: 4.3525 },
+  "dusseldorf": { name: "Düsseldorf", short: "DUSSELDORF", lat: 51.2277, lng: 6.7735 },
 };
 
 // Towns with their own landing page. Copy is written per town; no templated filler.
